@@ -15,25 +15,25 @@ Este documento describe los pasos necesarios para configurar el entorno de desar
 
 Clonar lo repos en el directorio de elección.
 
-*Repo de la **api** (backend):
+* Repo de la **api** (backend):
 
 ``` 
 git clone git@github.com:sbarrautn/ProyectoFinalBackEnd api
 ```
 
-*Repo de la app **web** (frontend):
+* Repo de la app **web** (frontend):
 
 ``` 
 git clone git@github.com:sbarrautn/ProyectoFinalFrontEnd web
 ```
 
-*Repo de los contenedores de **docker** (docker):
+* Repo de los contenedores de **docker** (docker):
 
 ``` 
 git clone git@github.com:sbarrautn/ProyectoFinalDocker docker
 ```
 
-### Realizar la instalación de composer en el proyecto.
+### Realizar la instalación de composer en el proyecto de la api.
 
 ```
 https://getcomposer.org/download/
@@ -56,7 +56,7 @@ Copiamos el `composer.phar` de instalación que nos proveen los comandos anterio
 
 3. Ejecutar un `docker-compose up -d`
 
-4. Encender los contenedores con `docker-compose start`
+4. Encender los contenedores con `docker-compose start` o `pfd start`
 
 5. Para verificar que se encuentran los contenedores y ver sus estados `docker-compose ps`
 
@@ -75,11 +75,11 @@ Copiamos el `composer.phar` de instalación que nos proveen los comandos anterio
 
 ### Contenedor de api (Backend)
 
-Si queremos entrar al container de la api `pfd commander` o `pfd bash` o `docker exec -it proyecto_api bash`.
+Si queremos entrar al container de la api: `pfd commander` o `pfd bash` o `docker exec -it proyecto_api bash`.
 
 ### Contenedor de web (Frontend)
 
-Si queremos entrar al container de la web `pfd frontend-start`.
+Si queremos entrar al container de la web: `pfd frontend-start` o `docker exec -it proyecto_web bash`.
 
 ### Instalación de las dependencias.
 
