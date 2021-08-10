@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Domain\Entities;
 
 use DateTime;
+use Domain\Enums\UserRoles;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
+use RuntimeException;
 
 class User
 {
@@ -93,5 +95,19 @@ class User
         $student = $this->getStudent();
 
         return ($student !== null) && !$student->getDeletedAt();
+    }
+
+    public function hasRole(string $role): bool
+    {
+        UserRoles::assertContains($role);
+
+        switch ($role) {
+            case UserRoles::STUDENT:
+                return $this->isStudent();
+            case UserRoles::TEACHER:
+                return $this->isTeacher();
+            default:
+                throw new RuntimeException(__('The role of the user is not valid'));
+        }
     }
 }

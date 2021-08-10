@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Presentation\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Presentation\Http\Middleware\AuthenticateMiddleware;
+use Presentation\Http\Middleware\CheckRoleMiddleware;
 use Presentation\Http\Middleware\CORSHeadersMiddleware;
 use Presentation\Http\Middleware\LocalMiddleware;
 
@@ -46,6 +48,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            AuthenticateMiddleware::class,
         ],
     ];
 
@@ -66,6 +69,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'role' => CheckRoleMiddleware::class,
         'cors' => CORSHeadersMiddleware::class,
         'local' => LocalMiddleware::class,
     ];
