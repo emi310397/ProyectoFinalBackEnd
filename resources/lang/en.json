@@ -1,3 +1,11 @@
 {
+  "User not found": "Usuario no encontrado",
+  "Teacher not found": "Docente no encontrado",
+  "Student not found": "Estudiante no encontrado",
+  "PClass not found": "PClase no encontrado",
 
+  "The subject of the class is required": "El asunto de la clase es requerido",
+  "The subject of the class must be a string": "El asunto de la clase debe ser texto",
+  "The description of the class is required": "El asunto de la clase es requerido",
+  "The description of the class must be a string": "El asunto de la clase debe ser texto"
 }

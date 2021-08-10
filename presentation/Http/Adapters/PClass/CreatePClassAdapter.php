@@ -27,7 +27,7 @@ class CreatePClassAdapter extends CommandAdapter
             self::SUBJECT_PARAM . 'required' => __('The subject of the class is required'),
             self::SUBJECT_PARAM . 'string' => __('The subject of the class must be a string'),
             self::DESCRIPTION_PARAM . 'required' => __('The description of the class is required'),
-            self::DESCRIPTION_PARAM . 'string' => __('The description of the class is not valid'),
+            self::DESCRIPTION_PARAM . 'string' => __('The description of the class must be a string'),
         ];
     }
 
