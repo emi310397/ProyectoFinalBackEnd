@@ -33,21 +33,6 @@ git clone git@github.com:sbarrautn/ProyectoFinalFrontEnd web
 git clone git@github.com:sbarrautn/ProyectoFinalDocker docker
 ```
 
-### Realizar la instalación de composer en el proyecto de la api.
-
-```
-https://getcomposer.org/download/
-```
-```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-```
-PD: Tener en cuenta que el hash de arriba siempre se actualiza por lo que es mejor entrar a la página de composer.
-
-Copiamos el `composer.phar` de instalación que nos proveen los comandos anteriores en la carpeta raíz del proyecto de la api.
-
 ### Instalación de los contenedores de Docker.
 
 1. Entrar en la carpeta de docker del proyecto. (`/docker`)
@@ -72,6 +57,21 @@ Copiamos el `composer.phar` de instalación que nos proveen los comandos anterio
     * Entramos para modificar nuestro `~/.profile`.
     * Agregar la siguiente línea `PATH="$HOME/dev/proyecto/docker/scripts/:$PATH"` al final de nuestro `~/.profile`.
     * Si queremos probar de que funciona sin tener que reiniciar, recargamos el nuevo path: `source ~/.profile`
+
+### Realizar la instalación de composer en el proyecto de la api.
+
+```
+https://getcomposer.org/download/
+```
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+PD: Tener en cuenta que el hash de arriba siempre se actualiza por lo que es mejor entrar a la página de composer.
+
+Copiamos el `composer.phar` de instalación que nos proveen los comandos anteriores en la carpeta raíz del proyecto de la api.
 
 ### Contenedor de api (Backend)
 
