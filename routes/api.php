@@ -9,6 +9,9 @@ Route::middleware(['role:teacher'])->group(
     function () {
         Route::post('/classes', 'PClass\CreatePClassAction@execute')
             ->name(Actions\PClass\CreatePClassAction::ROUTE_NAME);
+
+        Route::delete('/classes/{id}', 'PClass\DeletePClassAction@execute')
+            ->name(Actions\PClass\DeletePClassAction::ROUTE_NAME);
     }
 );
 
