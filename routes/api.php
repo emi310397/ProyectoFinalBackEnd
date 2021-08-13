@@ -12,6 +12,9 @@ Route::middleware(['role:teacher'])->group(
 
         Route::delete('/classes/{id}', 'PClass\DeletePClassAction@execute')
             ->name(Actions\PClass\DeletePClassAction::ROUTE_NAME);
+
+        Route::post('/tasks', 'Task\CreateTaskAction@execute')
+            ->name(Actions\Task\CreateTaskAction::ROUTE_NAME);
     }
 );
 
