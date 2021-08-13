@@ -2,7 +2,8 @@
   "User not found": "Usuario no encontrado",
   "Teacher not found": "Docente no encontrado",
   "Student not found": "Estudiante no encontrado",
-  "PClass not found": "PClase no encontrado",
+  "PClass not found": "PClase no encontrada",
+  "Task not found": "Tarea no encontrada",
 
   "The id of the class is required": "El id de la clase es requerido",
   "The id of the class must be a number": "El id de la clase debe ser numérico",

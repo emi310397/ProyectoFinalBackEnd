@@ -10,12 +10,18 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('pclasses');
+$builder->setTable('tasks');
 
-$builder->createField('subject', Types::TEXT)
+$builder->createField('title', Types::TEXT)
     ->build();
 
 $builder->createField('description', Types::TEXT)
+    ->build();
+
+$builder->createField('fromDate', Types::DATE_IMMUTABLE)
+    ->build();
+
+$builder->createField('toDate', Types::DATE_IMMUTABLE)
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);
