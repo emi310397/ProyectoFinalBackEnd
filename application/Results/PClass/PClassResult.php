@@ -6,7 +6,7 @@ namespace Application\Results\PClass;
 
 use Domain\Entities\PClass;
 
-class PClassSingleResult
+class PClassResult
 {
     private PClass $PClass;
 

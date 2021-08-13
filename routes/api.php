@@ -15,6 +15,9 @@ Route::middleware(['role:teacher'])->group(
 
         Route::get('/classes/{id}', 'PClass\GetPClassAction@execute')
             ->name(Actions\PClass\GetPClassAction::ROUTE_NAME);
+
+        Route::get('/classes', 'PClass\GetPClassesAction@execute')
+            ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
     }
 );
 

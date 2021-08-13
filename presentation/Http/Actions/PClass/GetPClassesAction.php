@@ -8,21 +8,21 @@ use Domain\QueryBus\QueryBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Presentation\Http\Actions\BaseAction;
-use Presentation\Http\Adapters\PClass\GetPClassAdapter;
-use Presentation\Http\Presenters\PClass\PClassPresenter;
+use Presentation\Http\Adapters\PClass\GetPClassesAdapter;
+use Presentation\Http\Presenters\PClass\PClassesPresenter;
 
-class GetPClassAction extends BaseAction
+class GetPClassesAction extends BaseAction
 {
-    public const ROUTE_NAME = 'PClass.get';
+    public const ROUTE_NAME = 'PClasses.get';
 
-    private GetPClassAdapter $adapter;
+    private GetPClassesAdapter $adapter;
     private QueryBusInterface $queryBus;
-    private PClassPresenter $presenter;
+    private PClassesPresenter $presenter;
 
     public function __construct(
-        GetPClassAdapter $adapter,
+        GetPClassesAdapter $adapter,
         QueryBusInterface $queryBus,
-        PClassPresenter $presenter
+        PClassesPresenter $presenter
     ) {
         $this->adapter = $adapter;
         $this->queryBus = $queryBus;

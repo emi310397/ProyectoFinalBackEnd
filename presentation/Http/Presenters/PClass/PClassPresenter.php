@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Presentation\Http\Presenters\PClass;
 
-use Application\Results\PClass\PClassSingleResult;
+use Application\Results\PClass\PClassResult;
 use Infrastructure\Presenter\Contracts\PresenterInterface;
 
-class PClassSinglePresenter implements PresenterInterface
+class PClassPresenter implements PresenterInterface
 {
-    private PClassSingleResult $result;
+    private PClassResult $result;
 
-    public function fromResult(PClassSingleResult $result): PClassSinglePresenter
+    public function fromResult(PClassResult $result): PClassPresenter
     {
         $this->result = $result;
         return $this;

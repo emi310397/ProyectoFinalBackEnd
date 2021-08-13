@@ -47,8 +47,8 @@ class GetPClassAdapter extends CommandAdapter
         $rules[self::ID_PARAM] = $id;
         $this->assertRulesAreValid($rules);
 
-        $docket = $this->PClassRepository->getByIdOrFail($id);
+        $PClass = $this->PClassRepository->getByIdOrFail($id);
 
-        return new GetPClassQuery($docket);
+        return new GetPClassQuery($PClass);
     }
 }
