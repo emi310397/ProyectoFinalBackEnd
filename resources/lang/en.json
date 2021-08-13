@@ -4,6 +4,9 @@
   "Student not found": "Estudiante no encontrado",
   "PClass not found": "PClase no encontrado",
 
+  "The id of the class is required": "El id de la clase es requerido",
+  "The id of the class must be a number": "El id de la clase debe ser numérico",
+  "The id of the class must be a greater than 0": "El id de la clase debe ser mayor a 0",
   "The subject of the class is required": "El asunto de la clase es requerido",
   "The subject of the class must be a string": "El asunto de la clase debe ser texto",
   "The description of the class is required": "El asunto de la clase es requerido",
