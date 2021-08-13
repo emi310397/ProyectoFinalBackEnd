@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
+use Domain\Entities\User;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
@@ -16,6 +17,9 @@ $builder->createField('subject', Types::TEXT)
     ->build();
 
 $builder->createField('description', Types::TEXT)
+    ->build();
+
+$builder->createManyToMany('users', User::class)
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Interfaces\Repositories;
 
 use Domain\Entities\PClass;
+use Domain\Entities\User;
 
 /**
  * Interface PClassRepositoryInterface
@@ -22,4 +23,6 @@ use Domain\Entities\PClass;
 interface PClassRepositoryInterface extends BaseRepositoryInterface
 {
     public function getByIdOrFail(int $id): PClass;
+
+    public function getAllByUser(User $user): array;
 }

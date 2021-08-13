@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\PClass;
+use Domain\Entities\User;
 use Domain\Interfaces\Repositories\PClassRepositoryInterface;
 
 /**
@@ -39,5 +40,14 @@ class PClassRepository extends BaseRepository implements PClassRepositoryInterfa
         }
 
         return $PClass;
+    }
+
+    public function getAllByUser(User $user): array
+    {
+        $qb = $this->createQueryBuilder('pclasses');
+        $qb->where('pclasses.deletedAt IS NULL')
+            ->andWhere('IDENTITY(pclasses.user) = :user')
+            ->setParameter('user', $user->getId());
+        return $qb->getQuery()->execute();
     }
 }

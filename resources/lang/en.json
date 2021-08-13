@@ -5,6 +5,10 @@
   "PClass not found": "PClase no encontrada",
   "Task not found": "Tarea no encontrada",
 
+  "The id of the user is required": "El id del usuario es requerido",
+  "The id of the user must be a number": "El id del usuario debe ser numérico",
+  "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",
+
   "The id of the class is required": "El id de la clase es requerido",
   "The id of the class must be a number": "El id de la clase debe ser numérico",
   "The id of the class must be a greater than 0": "El id de la clase debe ser mayor a 0",
