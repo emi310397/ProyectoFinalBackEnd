@@ -21,6 +21,9 @@ Route::middleware(['role:teacher'])->group(
 
         Route::get('/classes', 'PClass\GetPClassesAction@execute')
             ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
+
+        Route::post('/tasks', 'Task\CreateTaskAction@execute')
+            ->name(Actions\Task\CreateTaskAction::ROUTE_NAME);
     }
 );
 

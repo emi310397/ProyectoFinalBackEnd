@@ -13,15 +13,12 @@ $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('users');
 
 $builder->createField('firstName', Types::STRING)
-    ->nullable()
     ->build();
 
 $builder->createField('lastName', Types::STRING)
-    ->nullable()
     ->build();
 
 $builder->createField('password', Types::TEXT)
-    ->nullable()
     ->build();
 
 $builder->createOneToOne('teacher', Teacher::class)
