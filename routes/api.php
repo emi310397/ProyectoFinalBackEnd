@@ -24,6 +24,9 @@ Route::middleware(['role:teacher'])->group(
 
         Route::post('/tasks', 'Task\CreateTaskAction@execute')
             ->name(Actions\Task\CreateTaskAction::ROUTE_NAME);
+
+        Route::put('/tasks', 'Task\EditTaskAction@execute')
+            ->name(Actions\Task\EditTaskAction::ROUTE_NAME);
     }
 );
 
