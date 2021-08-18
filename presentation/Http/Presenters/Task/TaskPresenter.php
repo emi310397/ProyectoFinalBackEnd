@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Presentation\Http\Presenters\Task;
 
-use Application\Results\PClass\PClassResult;
+use Application\Results\Task\TaskResult;
 use Infrastructure\Presenter\Contracts\PresenterInterface;
 
 class TaskPresenter implements PresenterInterface
 {
-    private PClassResult $result;
+    private TaskResult $result;
 
-    public function fromResult(PClassResult $result): PClassPresenter
+    public function fromResult(TaskResult $result): TaskPresenter
     {
         $this->result = $result;
         return $this;
@@ -24,12 +24,14 @@ class TaskPresenter implements PresenterInterface
 
     public function getData(): array
     {
-        $PClass = $this->result->getPClass();
+        $task = $this->result->getTask();
 
         return [
-            'id' => $PClass->getId(),
-            'subject' => $PClass->getSubject(),
-            'description' => $PClass->getDescription()
+            'id' => $task->getId(),
+            'subject' => $task->getTitle(),
+            'description' => $task->getDescription(),
+            'fromDate' => $task->getFromDate(),
+            'toDate' => $task->getToDate()
         ];
     }
 }
