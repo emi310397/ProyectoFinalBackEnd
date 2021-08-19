@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Domain\Entities;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
@@ -20,6 +22,7 @@ class Task
     private string $description;
     private DateTime $fromDate;
     private DateTime $toDate;
+    private Collection $assignments;
 
     public function __construct(
         PClass $PClass,
@@ -33,6 +36,7 @@ class Task
         $this->description = $description;
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;
+        $this->assignments = new ArrayCollection();
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
@@ -81,5 +85,15 @@ class Task
     public function setToDate(DateTime $toDate): void
     {
         $this->toDate = $toDate;
+    }
+
+    public function getAssignments(): Collection
+    {
+        return $this->assignments;
+    }
+
+    public function addAssignment(Assignment $assignment): void
+    {
+        $this->assignments->add($assignment);
     }
 }
