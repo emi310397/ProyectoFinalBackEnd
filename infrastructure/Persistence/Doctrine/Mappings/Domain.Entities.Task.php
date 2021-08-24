@@ -14,8 +14,7 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('tasks');
 
-$builder->createManyToOne('PClass', PClass::class)
-    ->inversedBy('tasks')
+$builder->createManyToMany('classes', PClass::class)
     ->build();
 
 $builder->createField('title', Types::TEXT)

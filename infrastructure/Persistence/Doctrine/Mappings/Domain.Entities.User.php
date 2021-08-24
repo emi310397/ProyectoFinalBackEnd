@@ -18,7 +18,7 @@ $builder->createField('firstName', Types::STRING)
 $builder->createField('lastName', Types::STRING)
     ->build();
 
-$builder->createField('email', Types::STRING)
+$builder->createField('email', Types::TEXT)
     ->build();
 
 $builder->createField('password', Types::TEXT)
