@@ -35,7 +35,7 @@ class StudentGroupRepository extends BaseRepository implements StudentGroupRepos
         $studentGroup = $this->findOneBy(['id' => $id, 'deletedAt' => null]);
 
         if (!$studentGroup) {
-            throw new EntityNotFoundException(__('StudentGroup not found'));
+            throw new EntityNotFoundException(__('Student group not found'));
         }
 
         return $studentGroup;

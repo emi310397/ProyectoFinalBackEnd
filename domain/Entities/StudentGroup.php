@@ -19,12 +19,14 @@ class StudentGroup
 
     private string $name;
     private string $description;
+    private Course $course;
     private Collection $students;
 
-    public function __construct(string $name, string $description, array $students = [])
+    public function __construct(string $name, string $description, Course $course, array $students = [])
     {
         $this->name = $name;
         $this->description = $description;
+        $this->course = $course;
         $this->students = new ArrayCollection($students);
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
@@ -49,6 +51,16 @@ class StudentGroup
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getCourse(): Course
+    {
+        return $this->course;
+    }
+
+    public function setCourse(Course $course): void
+    {
+        $this->course = $course;
     }
 
     public function getStudents(): Collection

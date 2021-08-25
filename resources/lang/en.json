@@ -2,12 +2,22 @@
   "User not found": "Usuario no encontrado",
   "Teacher not found": "Docente no encontrado",
   "Student not found": "Estudiante no encontrado",
+  "Course not found": "Curso no encontrado",
   "PClass not found": "PClase no encontrada",
   "Task not found": "Tarea no encontrada",
+  "Student Group not found": "Grupo de estudiantes no encontrado",
 
   "The id of the user is required": "El id del usuario es requerido",
   "The id of the user must be a number": "El id del usuario debe ser numérico",
   "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",
+
+  "The student groups of the assigment are required": "Los grupos de estudiantes de la asignación son requerido",
+  "The student groups of the assigment must be an array": "Los grupos de estudiantes de la asignación deben ser un array",
+  "At least one student group id is required": "Al menos un id de grupo de estudiantes es requerido",
+  "The student group id must be a number": "El id de grupo de estudiantes debe ser numérico",
+  "The student group id must be a greater than 0": "El id de grupo de estudiantes debe ser mayor a 0",
+  "The student group ids can not be repeated": "Los ids de grupos de estudiantes no pueden estar repetidos",
+  "There is a student group that do not belong to this course": "Hay un id de grupo de estudiantes que no pertenece a este curso",
 
   "The id of the class is required": "El id de la clase es requerido",
   "The id of the class must be a number": "El id de la clase debe ser numérico",

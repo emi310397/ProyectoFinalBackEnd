@@ -25,8 +25,8 @@ $builder->createOneToOne('teacher', Teacher::class)
     ->cascadePersist()
     ->build();
 
-$builder->createManyToMany('students', StudentGroup::class)
-    ->cascadePersist()
+$builder->createOneToMany('students', StudentGroup::class)
+    ->mappedBy('course')
     ->build();
 
 $builder->createOneToMany('classes', PClass::class)
