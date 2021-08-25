@@ -39,8 +39,8 @@ class Assignment
         return $this->students;
     }
 
-    public function addStudents(Student $student): void
+    public function addStudents(StudentGroup $studentGroup): void
     {
-        $this->students->add($student);
+        $this->students->add($studentGroup);
     }
 }

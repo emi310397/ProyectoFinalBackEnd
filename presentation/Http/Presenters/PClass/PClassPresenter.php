@@ -28,7 +28,7 @@ class PClassPresenter implements PresenterInterface
 
         return [
             'id' => $PClass->getId(),
-            'subject' => $PClass->getSubject(),
+            'subject' => $PClass->getTitle(),
             'description' => $PClass->getDescription()
         ];
     }

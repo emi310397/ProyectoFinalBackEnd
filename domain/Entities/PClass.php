@@ -18,7 +18,7 @@ class PClass
     use IdentityTrait;
 
     private Course $course;
-    private string $subject;
+    private string $title;
     private string $description;
     private DateTime $fromDate;
     private DateTime $toDate;
@@ -32,7 +32,7 @@ class PClass
         DateTime $toDate
     ) {
         $this->course = $course;
-        $this->subject = $subject;
+        $this->title = $subject;
         $this->description = $description;
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;
@@ -47,14 +47,14 @@ class PClass
         return $this->course;
     }
 
-    public function getSubject(): string
+    public function getTitle(): string
     {
-        return $this->subject;
+        return $this->title;
     }
 
-    public function setSubject(string $subject): void
+    public function setTitle(string $title): void
     {
-        $this->subject = $subject;
+        $this->title = $title;
     }
 
     public function getDescription(): string

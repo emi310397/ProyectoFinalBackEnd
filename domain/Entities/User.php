@@ -24,8 +24,12 @@ class User
     private ?Teacher $teacher = null;
     private ?Student $student = null;
 
-    public function __construct(string $firstName, string $lastName, string $email, string $password)
-    {
+    public function __construct(
+        string $firstName,
+        string $lastName,
+        string $email,
+        string $password
+    ) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;

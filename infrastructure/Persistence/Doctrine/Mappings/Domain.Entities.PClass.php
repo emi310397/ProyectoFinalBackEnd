@@ -6,7 +6,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Domain\Entities\Course;
 use Domain\Entities\Task;
-use Domain\Entities\User;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
@@ -19,19 +18,20 @@ $builder->createManyToOne('course', Course::class)
     ->inversedBy('classes')
     ->build();
 
-$builder->createField('subject', Types::TEXT)
+$builder->createField('title', Types::TEXT)
     ->build();
 
 $builder->createField('description', Types::TEXT)
-    ->build();
-
-$builder->createManyToMany('users', User::class)
     ->build();
 
 $builder->createField('fromDate', Types::DATE_IMMUTABLE)
     ->build();
 
 $builder->createField('toDate', Types::DATE_IMMUTABLE)
+    ->build();
+
+$builder->createManyToMany('tasks', Task::class)
+    ->cascadePersist()
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);

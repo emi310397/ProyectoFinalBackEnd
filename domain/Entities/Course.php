@@ -65,7 +65,7 @@ class Course
         return $this->students;
     }
 
-    public function addStudent(StudentGroup $students): void
+    public function addStudents(StudentGroup $students): void
     {
         $this->students->add($students);
     }
@@ -75,8 +75,8 @@ class Course
         return $this->classes;
     }
 
-    public function addClass(PClass $classes): void
+    public function addClass(PClass $class): void
     {
-        $this->classes->add($classes);
+        $this->classes->add($class);
     }
 }

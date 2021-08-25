@@ -22,7 +22,7 @@ class EditPClassHandler
     {
         $PClass = $command->getPClass();
 
-        $command->getSubject() ? $PClass->setSubject($command->getSubject()) : null;
+        $command->getSubject() ? $PClass->setTitle($command->getSubject()) : null;
         $command->getDescription() ? $PClass->setDescription($command->getDescription()) : null;
         $PClass->setUpdatedAt(new DateTime());
 
