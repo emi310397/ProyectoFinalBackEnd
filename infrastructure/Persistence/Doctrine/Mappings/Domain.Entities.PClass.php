@@ -30,10 +30,6 @@ $builder->createField('fromDate', Types::DATE_IMMUTABLE)
 $builder->createField('toDate', Types::DATE_IMMUTABLE)
     ->build();
 
-$builder->createManyToMany('tasks', Task::class)
-    ->cascadePersist()
-    ->build();
-
 SoftDeleteBuilder::addSoftDelete($builder);
 CurrentTimestampBuilder::addTimestamps($builder);
 IdentityBuilder::addIdField($builder);
