@@ -38,5 +38,9 @@
   "The start date of the task must be a valid date": "La fecha de inicio de la tarea debe ser una fecha válida",
   "The end date of the task is required": "La fecha de finalización de la tarea es requerida",
   "The end date of the task must be a valid date": "La fecha de finalización de la tarea debe ser una fecha válida",
-  "The end date of the task must be higher than the start date": "La fecha de finalización de la tarea debe ser mayor a la fecha de inicio"
+  "The end date of the task must be higher than the start date": "La fecha de finalización de la tarea debe ser mayor a la fecha de inicio",
+
+  "The id of the assignment is required": "El id de la asignación es requerido",
+  "The id of the assignment must be a number": "El id de la asignación debe ser numérico",
+  "The id of the assignment must be a greater than 0": "El id de la asignación debe ser mayor a 0"
 }
