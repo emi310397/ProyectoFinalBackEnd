@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Domain\Entities\Assignment;
 use Domain\Entities\PClass;
+use Domain\Entities\StudentGroup;
+use Domain\Entities\Teacher;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('tasks');
-
-$builder->createManyToMany('classes', PClass::class)
-    ->build();
+$builder->setTable('courses');
 
 $builder->createField('title', Types::TEXT)
     ->build();
@@ -23,14 +21,16 @@ $builder->createField('title', Types::TEXT)
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createField('fromDate', Types::DATE_IMMUTABLE)
+$builder->createOneToOne('teacher', Teacher::class)
+    ->cascadePersist()
     ->build();
 
-$builder->createField('toDate', Types::DATE_IMMUTABLE)
+$builder->createOneToMany('students', StudentGroup::class)
+    ->mappedBy('course')
     ->build();
 
-$builder->createOneToMany('assignments', Assignment::class)
-    ->mappedBy('task')
+$builder->createOneToMany('classes', PClass::class)
+    ->mappedBy('course')
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);

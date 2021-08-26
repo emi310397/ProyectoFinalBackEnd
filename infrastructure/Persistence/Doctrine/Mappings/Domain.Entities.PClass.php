@@ -4,22 +4,30 @@ declare(strict_types=1);
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Domain\Entities\User;
+use Domain\Entities\Course;
+use Domain\Entities\Task;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('pclasses');
+$builder->setTable('classes');
 
-$builder->createField('subject', Types::TEXT)
+$builder->createManyToOne('course', Course::class)
+    ->inversedBy('classes')
+    ->build();
+
+$builder->createField('title', Types::TEXT)
     ->build();
 
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createManyToMany('users', User::class)
+$builder->createField('fromDate', Types::DATE_IMMUTABLE)
+    ->build();
+
+$builder->createField('toDate', Types::DATE_IMMUTABLE)
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);
