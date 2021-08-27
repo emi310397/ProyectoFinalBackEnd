@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\presentation\Http\Actions\PClass;
+namespace Tests\Integration\presentation\Http\Actions\Assignment;
 
 use Application\ValueObjects\HttpStatusCode;
-use Presentation\Http\Actions\PClass\DeletePClassAction;
+use Presentation\Http\Actions\Assignment\DeleteAssignmentAction;
 use Presentation\Http\Enums\HttpMethods;
 use Tests\Integration\ApiTestCase;
 
-class DeletePClassActionTest extends ApiTestCase
+class DeleteAssignmentActionTest extends ApiTestCase
 {
     public function testOk(): void
     {
         $request = self::request()
             ->method(HttpMethods::DELETE)
-            ->route(DeletePClassAction::ROUTE_NAME)
+            ->route(DeleteAssignmentAction::ROUTE_NAME)
             ->withQueryParam('id', 1)
             ->build();
 
@@ -28,7 +28,7 @@ class DeletePClassActionTest extends ApiTestCase
     {
         $request = self::request()
             ->method(HttpMethods::DELETE)
-            ->route(DeletePClassAction::ROUTE_NAME)
+            ->route(DeleteAssignmentAction::ROUTE_NAME)
             ->withQueryParam('id', -1)
             ->build();
 
@@ -41,7 +41,7 @@ class DeletePClassActionTest extends ApiTestCase
     {
         $request = self::request()
             ->method(HttpMethods::DELETE)
-            ->route(DeletePClassAction::ROUTE_NAME)
+            ->route(DeleteAssignmentAction::ROUTE_NAME)
             ->build();
 
         $response = $this->execute($request);
