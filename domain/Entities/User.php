@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Domain\Entities;
 
 use DateTime;
-use Domain\Enums\UserRoles;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
-use RuntimeException;
 
-class User
+abstract class User
 {
     use SoftDeleteTrait;
     use TimestampsTrait;
@@ -21,8 +19,6 @@ class User
     private string $lastName;
     private string $email;
     private string $password;
-    private ?Teacher $teacher = null;
-    private ?Student $student = null;
 
     public function __construct(
         string $firstName,
@@ -77,53 +73,5 @@ class User
     public function setPassword($password): void
     {
         $this->password = $password;
-    }
-
-    public function getTeacher(): ?Teacher
-    {
-        return $this->teacher;
-    }
-
-    public function setTeacher(Teacher $teacher): void
-    {
-        $this->teacher = $teacher;
-    }
-
-    public function getStudent(): ?Student
-    {
-        return $this->student;
-    }
-
-    public function setStudent(Student $student): void
-    {
-        $this->student = $student;
-    }
-
-    public function isTeacher(): bool
-    {
-        $teacher = $this->getTeacher();
-
-        return ($teacher !== null) && !$teacher->getDeletedAt();
-    }
-
-    public function isStudent(): bool
-    {
-        $student = $this->getStudent();
-
-        return ($student !== null) && !$student->getDeletedAt();
-    }
-
-    public function hasRole(string $role): bool
-    {
-        UserRoles::assertContains($role);
-
-        switch ($role) {
-            case UserRoles::STUDENT:
-                return $this->isStudent();
-            case UserRoles::TEACHER:
-                return $this->isTeacher();
-            default:
-                throw new RuntimeException(__('The role of the user is not valid'));
-        }
     }
 }

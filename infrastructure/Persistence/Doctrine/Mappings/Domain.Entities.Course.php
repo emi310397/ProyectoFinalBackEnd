@@ -6,7 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Domain\Entities\PClass;
 use Domain\Entities\StudentGroup;
-use Domain\Entities\Teacher;
+use Domain\Entities\User;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
@@ -21,8 +21,7 @@ $builder->createField('title', Types::TEXT)
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createOneToOne('teacher', Teacher::class)
-    ->cascadePersist()
+$builder->createOneToOne('teacher', User::class)
     ->build();
 
 $builder->createOneToMany('students', StudentGroup::class)

@@ -24,13 +24,10 @@ $builder->createField('email', Types::TEXT)
 $builder->createField('password', Types::TEXT)
     ->build();
 
-$builder->createOneToOne('teacher', Teacher::class)
-    ->cascadePersist()
-    ->build();
-
-$builder->createOneToOne('student', Student::class)
-    ->cascadePersist()
-    ->build();
+$builder->setSingleTableInheritance()
+    ->setDiscriminatorColumn('rol', Types::STRING)
+    ->addDiscriminatorMapClass('teacher', Teacher::class)
+    ->addDiscriminatorMapClass('student', Student::class);
 
 SoftDeleteBuilder::addSoftDelete($builder);
 CurrentTimestampBuilder::addTimestamps($builder);

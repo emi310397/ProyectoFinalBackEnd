@@ -6,17 +6,18 @@ namespace Domain\Entities;
 
 use DateTime;
 use Domain\Traits\IdentityTrait;
-use Domain\Traits\SoftDeleteTrait;
-use Domain\Traits\TimestampsTrait;
 
-class Teacher
+class Teacher extends User
 {
-    use SoftDeleteTrait;
-    use TimestampsTrait;
     use IdentityTrait;
 
-    public function __construct()
-    {
+    public function __construct(
+        string $firstName,
+        string $lastName,
+        string $email,
+        string $password
+    ) {
+        parent::__construct($firstName, $lastName, $email, $password);
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
