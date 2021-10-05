@@ -5,15 +5,29 @@ declare(strict_types=1);
 namespace Presentation\Http\Adapters\Teacher;
 
 use Application\Commands\Teacher\CreateTeacherCommand;
+use Application\Exceptions\ExistingEntityException;
 use Domain\Adapters\CommandAdapter;
+use Domain\Entities\User;
+use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Presentation\Interfaces\ValidatorServiceInterface;
 
 class CreateTeacherAdapter extends CommandAdapter
 {
+    private UserRepositoryInterface $userRepository;
+
     private const FIRST_NAME_PARAM = 'firstName';
     private const LAST_NAME_PARAM = 'lastName';
     private const EMAIL_PARAM = 'email';
     private const PASSWORD_PARAM = 'password';
+
+    public function __construct(
+        ValidatorServiceInterface $validator,
+        UserRepositoryInterface $userRepository
+    ) {
+        parent::__construct($validator);
+        $this->userRepository = $userRepository;
+    }
 
     public function getRules(): array
     {
@@ -44,10 +58,18 @@ class CreateTeacherAdapter extends CommandAdapter
     {
         $this->assertRulesAreValid($request->all());
 
+        $email = $request->get(self::EMAIL_PARAM);
+
+        $user = $this->userRepository->getByEmail($email);
+
+        if ($user) {
+            throw new ExistingEntityException(User::class);
+        }
+
         return new CreateTeacherCommand(
             $request->get(self::FIRST_NAME_PARAM),
             $request->get(self::LAST_NAME_PARAM),
-            $request->get(self::EMAIL_PARAM),
+            $email,
             $request->get(self::PASSWORD_PARAM)
         );
     }

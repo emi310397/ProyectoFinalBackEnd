@@ -41,4 +41,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function getByEmail(string $email): ?User
+    {
+        return $this->findOneBy(['email' => $email, 'deletedAt' => null]);
+    }
 }

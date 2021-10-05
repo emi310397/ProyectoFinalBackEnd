@@ -22,4 +22,6 @@ use Domain\Entities\User;
 interface UserRepositoryInterface extends BaseRepositoryInterface
 {
     public function getByIdOrFail(int $id): User;
+
+    public function getByEmail(string $email): ?User;
 }
