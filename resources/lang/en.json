@@ -11,6 +11,16 @@
   "The id of the user must be a number": "El id del usuario debe ser numérico",
   "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",
 
+  "The user first name is required": "El nombre del usuario es requerido",
+  "The user first name must be a string": "El nombre del usuario debe ser texto",
+  "The user last name is required": "El apellido del usuario es requerido",
+  "The user last name must be a string": "El apellido del usuario debe ser texto",
+  "The user email is required": "El correo del usuario es requerido",
+  "The user email must be a string": "El correo del usuario debe ser texto",
+  "The user email must is not valid": "El correo del usuario es incorrecto",
+  "The user password is required": "La contraseña del usuario es requerido",
+  "The user password must be a string": "La contraseña del usuario debe ser texto",
+
   "The student groups of the assigment are required": "Los grupos de estudiantes de la asignación son requerido",
   "The student groups of the assigment must be an array": "Los grupos de estudiantes de la asignación deben ser un array",
   "At least one student group id is required": "Al menos un id de grupo de estudiantes es requerido",
