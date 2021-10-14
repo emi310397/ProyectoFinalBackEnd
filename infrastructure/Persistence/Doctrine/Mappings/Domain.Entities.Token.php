@@ -9,7 +9,7 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('sessions');
+$builder->setTable('tokens');
 $builder->createField('id', Types::INTEGER)
     ->makePrimaryKey()
     ->generatedValue()
@@ -23,6 +23,8 @@ $builder->createManyToOne('user', User::class)
     ->build();
 
 $builder->addField('hash', Types::TEXT);
+
+$builder->addField('hash', Types::INTEGER);
 
 $builder->addField('expired', Types::BOOLEAN);
 
