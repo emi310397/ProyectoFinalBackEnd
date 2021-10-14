@@ -24,7 +24,7 @@ $builder->createManyToOne('user', User::class)
 
 $builder->addField('hash', Types::TEXT);
 
-$builder->addField('hash', Types::INTEGER);
+$builder->addField('type', Types::INTEGER);
 
 $builder->addField('expired', Types::BOOLEAN);
 
