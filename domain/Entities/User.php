@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Entities;
 
 use DateTime;
+use Domain\Enums\UserStatuses;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
@@ -19,6 +20,7 @@ abstract class User
     private string $lastName;
     private string $email;
     private string $password;
+    private int $status = UserStatuses::NOT_ACTIVATED;
 
     public function __construct(
         string $firstName,
@@ -73,5 +75,41 @@ abstract class User
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    public function isNotActivated(): bool
+    {
+        return $this->getStatus() === UserStatuses::NOT_ACTIVATED;
+    }
+
+    public function isActivated(): bool
+    {
+        return $this->getStatus() === UserStatuses::ACTIVATED;
+    }
+
+    public function isDisabled(): bool
+    {
+        return $this->getStatus() === UserStatuses::DISABLED;
+    }
+
+    public function activate(): void
+    {
+        $this->status = UserStatuses::ACTIVATED;
+    }
+
+    public function deactivate(): void
+    {
+        $this->status = UserStatuses::NOT_ACTIVATED;
+    }
+
+    public function disable(): void
+    {
+        $this->status = UserStatuses::DISABLED;
     }
 }
