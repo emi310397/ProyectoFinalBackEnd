@@ -24,6 +24,9 @@ $builder->createField('email', Types::TEXT)
 $builder->createField('password', Types::TEXT)
     ->build();
 
+$builder->createField('status', Types::INTEGER)
+    ->build();
+
 $builder->setSingleTableInheritance()
     ->setDiscriminatorColumn('rol', Types::STRING)
     ->addDiscriminatorMapClass('teacher', Teacher::class)
