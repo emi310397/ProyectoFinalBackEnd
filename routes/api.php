@@ -3,6 +3,12 @@
 declare(strict_types=1);
 
 use Presentation\Http\Actions;
+use Presentation\Http\Middleware\AuthenticateMiddleware;
+
+Route::get('/ping', 'PingAction@execute')
+    ->name(Actions\PingAction::ROUTE_NAME)
+    ->withoutMiddleware([AuthenticateMiddleware::class])
+    ->middleware('local');
 
 //Teacher Routes
 Route::middleware(['role:teacher'])->group(

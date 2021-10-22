@@ -16,8 +16,7 @@ class PingAction extends BaseAction
     {
         return new JsonResponse(
             'Pong',
-            HttpStatusCode::OK,
-            $request->attributes->get('newSession')
+            HttpStatusCode::OK
         );
     }
 }
