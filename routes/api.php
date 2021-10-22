@@ -10,7 +10,7 @@ Route::get('/ping', 'PingAction@execute')
     ->withoutMiddleware([AuthenticateMiddleware::class])
     ->middleware('local');
 
-Route::post('/login/{hash}', 'Auth\LoginUserViaTokenAction@execute')
+Route::post('/login', 'Auth\LoginUserAction@execute')
     ->name(Actions\Auth\LoginUserAction::ROUTE_NAME)
     ->withoutMiddleware([AuthenticateMiddleware::class]);
 
