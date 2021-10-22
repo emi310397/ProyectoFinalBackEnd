@@ -10,13 +10,6 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('tokens');
-$builder->createField('id', Types::INTEGER)
-    ->makePrimaryKey()
-    ->generatedValue()
-    ->build();
-
-$builder->createManyToOne('user', User::class)
-    ->build();
 
 $builder->createManyToOne('user', User::class)
     ->addJoinColumn('user_id', 'id', false)
