@@ -10,6 +10,10 @@ Route::get('/ping', 'PingAction@execute')
     ->withoutMiddleware([AuthenticateMiddleware::class])
     ->middleware('local');
 
+Route::post('/login/{hash}', 'Auth\LoginUserViaTokenAction@execute')
+    ->name(Actions\Auth\LoginUserAction::ROUTE_NAME)
+    ->withoutMiddleware([AuthenticateMiddleware::class]);
+
 //Teacher Routes
 Route::middleware(['role:teacher'])->group(
     function () {
