@@ -14,6 +14,10 @@ Route::post('/login', 'Auth\LoginUserAction@execute')
     ->name(Actions\Auth\LoginUserAction::ROUTE_NAME)
     ->withoutMiddleware([AuthenticateMiddleware::class]);
 
+Route::post('/signup', 'Teacher\CreateTeacherAction@execute')
+    ->name(Actions\Teacher\CreateTeacherAction::ROUTE_NAME)
+    ->withoutMiddleware([AuthenticateMiddleware::class]);
+
 //Teacher Routes
 Route::middleware(['role:teacher'])->group(
     function () {
