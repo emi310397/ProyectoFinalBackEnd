@@ -12,13 +12,20 @@ class CreateTeacherCommand implements CommandInterface
     private string $lastName;
     private string $email;
     private string $password;
+    private string $confirmationUrl;
 
-    public function __construct(string $firstName, string $lastName, string $email, string $password)
-    {
+    public function __construct(
+        string $firstName,
+        string $lastName,
+        string $email,
+        string $password,
+        string $confirmationUrl
+    ) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
         $this->password = $password;
+        $this->confirmationUrl = $confirmationUrl;
     }
 
     public function getFirstName(): string
@@ -39,5 +46,10 @@ class CreateTeacherCommand implements CommandInterface
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function getConfirmationUrl(): string
+    {
+        return $this->confirmationUrl;
     }
 }

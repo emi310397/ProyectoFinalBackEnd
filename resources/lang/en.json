@@ -7,10 +7,10 @@
   "Task not found": "Tarea no encontrada",
   "Student Group not found": "Grupo de estudiantes no encontrado",
 
+  "There is already an user with that email address": "Ya existe un usuario con esa dirección de correo",
   "The id of the user is required": "El id del usuario es requerido",
   "The id of the user must be a number": "El id del usuario debe ser numérico",
   "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",
-
   "The user first name is required": "El nombre del usuario es requerido",
   "The user first name must be a string": "El nombre del usuario debe ser texto",
   "The user last name is required": "El apellido del usuario es requerido",
@@ -20,6 +20,8 @@
   "The user email must is not valid": "El correo del usuario es incorrecto",
   "The user password is required": "La contraseña del usuario es requerido",
   "The user password must be a string": "La contraseña del usuario debe ser texto",
+  "The confirmation url is required": "La url de confirmación es requerida",
+  "The confirmation url must be a valid url": "La url de confirmación debe ser una url válida",
 
   "The student groups of the assigment are required": "Los grupos de estudiantes de la asignación son requerido",
   "The student groups of the assigment must be an array": "Los grupos de estudiantes de la asignación deben ser un array",
