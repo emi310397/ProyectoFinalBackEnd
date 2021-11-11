@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
-use DateTime;
-use Domain\Traits\IdentityTrait;
-
 class Teacher extends User
 {
-    use IdentityTrait;
-
     public function __construct(
         string $firstName,
         string $lastName,
@@ -18,8 +13,5 @@ class Teacher extends User
         string $password
     ) {
         parent::__construct($firstName, $lastName, $email, $password);
-        $timestamp = new DateTime();
-        $this->setCreatedAt($timestamp);
-        $this->setUpdatedAt($timestamp);
     }
 }
