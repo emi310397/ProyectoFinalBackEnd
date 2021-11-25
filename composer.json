@@ -22,7 +22,8 @@
         "league/flysystem": "1.1.4",
         "pda/pheanstalk": "4.0",
         "predis/predis": "^1.1",
-      "ext-curl": "*"
+        "ext-curl": "*",
+        "symfony/serializer": "5.3.12"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

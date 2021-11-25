@@ -6,6 +6,7 @@ namespace Presentation\Exceptions;
 
 use Application\ValueObjects\HttpStatusCode;
 use Doctrine\ORM\EntityNotFoundException;
+use Application\Exceptions\DomainException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
@@ -26,6 +27,7 @@ class ErrorHandler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        DomainException::class,
         InvalidArgumentException::class,
         InvalidBodyException::class,
         NotFoundHttpException::class,
@@ -121,6 +123,16 @@ class ErrorHandler extends ExceptionHandler
                 $newSession,
                 $error,
                 __('Route not found')
+            );
+        }
+
+        if ($e instanceof DomainException) {
+            return $this->getErrorJSONResponse(
+                ResponseCodes::CODE_UNAUTHORIZED,
+                HttpStatusCode::UNAUTHORIZED,
+                $newSession,
+                $error,
+                $e->getMessage()
             );
         }
 
