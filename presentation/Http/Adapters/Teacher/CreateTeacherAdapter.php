@@ -20,6 +20,7 @@ class CreateTeacherAdapter extends CommandAdapter
     private const LAST_NAME_PARAM = 'lastName';
     private const EMAIL_PARAM = 'email';
     private const PASSWORD_PARAM = 'password';
+    private const CONFIRMATION_URL_PARAM = 'confirmationUrl';
 
     public function __construct(
         ValidatorServiceInterface $validator,
@@ -36,6 +37,7 @@ class CreateTeacherAdapter extends CommandAdapter
             self::LAST_NAME_PARAM => 'bail|required|string',
             self::EMAIL_PARAM => 'bail|required|email|string',
             self::PASSWORD_PARAM => 'bail|required|string',
+            self::CONFIRMATION_URL_PARAM => 'bail|required|url',
         ];
     }
 
@@ -51,6 +53,8 @@ class CreateTeacherAdapter extends CommandAdapter
             self::EMAIL_PARAM . 'string' => __('The user email must is not valid'),
             self::PASSWORD_PARAM . 'required' => __('The user password is required'),
             self::PASSWORD_PARAM . 'string' => __('The user password must be a string'),
+            self::CONFIRMATION_URL_PARAM . 'required' => __('The confirmation url is required'),
+            self::CONFIRMATION_URL_PARAM . 'url' => __('The confirmation url must be a valid url'),
         ];
     }
 
@@ -70,7 +74,8 @@ class CreateTeacherAdapter extends CommandAdapter
             $request->get(self::FIRST_NAME_PARAM),
             $request->get(self::LAST_NAME_PARAM),
             $email,
-            $request->get(self::PASSWORD_PARAM)
+            $request->get(self::PASSWORD_PARAM),
+            $request->get(self::CONFIRMATION_URL_PARAM)
         );
     }
 }

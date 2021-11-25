@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Presentation\Providers;
 
+use Application\Events\UserCreated;
+use Application\Listeners\SendAccountConfirmationEmailToUser;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        UserCreated::class => [
+            SendAccountConfirmationEmailToUser::class
+        ],
     ];
 
     /**
