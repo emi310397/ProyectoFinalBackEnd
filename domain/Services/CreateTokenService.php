@@ -20,8 +20,7 @@ class CreateTokenService
 
     public function handle(User $user, int $tokenType): Token
     {
-        $token = new Token($user, $this->generateJWTToken($user));
-        $token->setType($tokenType);
+        $token = new Token($user, $this->generateJWTToken($user), $tokenType);
         $this->tokenRepository->save($token);
 
         return $token;

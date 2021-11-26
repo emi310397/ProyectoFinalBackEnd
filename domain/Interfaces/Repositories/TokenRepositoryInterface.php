@@ -29,4 +29,6 @@ interface TokenRepositoryInterface extends BaseRepositoryInterface
     public function getByUser(User $user): ?Token;
 
     public function getAllByUser(User $user): ?array;
+
+    public function getAllByUserAndType(User $user, int $type): ?array;
 }

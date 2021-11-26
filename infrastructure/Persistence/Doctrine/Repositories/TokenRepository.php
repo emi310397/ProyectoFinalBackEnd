@@ -45,6 +45,11 @@ class TokenRepository extends BaseRepository implements TokenRepositoryInterface
         return $this->findBy(['user' => $user, 'expired' => false]);
     }
 
+    public function getAllByUserAndType(User $user, int $type): ?array
+    {
+        return $this->findBy(['user' => $user, 'type' => $type, 'expired' => false]);
+    }
+
     public function getUserLastToken(User $user): ?Token
     {
         return $this->findOneBy(['user' => $user], ['createdAt' => 'DESC']);
