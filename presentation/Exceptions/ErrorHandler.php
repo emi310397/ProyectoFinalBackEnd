@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presentation\Exceptions;
 
+use Application\Exceptions\ExistingEntityException;
 use Application\ValueObjects\HttpStatusCode;
 use Doctrine\ORM\EntityNotFoundException;
 use Application\Exceptions\DomainException;
@@ -140,6 +141,16 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_WRONG_ARGS,
                 HttpStatusCode::UNPROCESSABLE_ENTITY,
+                $newSession,
+                $error,
+                $e->getMessage()
+            );
+        }
+
+        if ($e instanceof ExistingEntityException) {
+            return $this->getErrorJSONResponse(
+                ResponseCodes::CODE_CONFLICT,
+                HttpStatusCode::CONFLICT,
                 $newSession,
                 $error,
                 $e->getMessage()
