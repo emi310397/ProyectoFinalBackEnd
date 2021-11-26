@@ -6,6 +6,7 @@ namespace Application\CommandHandlers\Teacher;
 
 use Application\Commands\Teacher\CreateTeacherCommand;
 use Application\Events\UserCreated;
+use Application\Services\Encrypt\EncryptService;
 use Application\Services\Event\EventDispatcherService;
 use Application\Validators\Auth\CreateUserValidator;
 use Domain\Entities\Teacher;
@@ -18,17 +19,20 @@ class CreateTeacherHandler
     private UserRepositoryInterface $userRepository;
     private CreateTokenService $createTokenService;
     private CreateUserValidator $validator;
+    private EncryptService $encryptService;
     private EventDispatcherService $eventDispatcher;
 
     public function __construct(
         UserRepositoryInterface $userRepository,
         CreateTokenService $createTokenService,
         CreateUserValidator $validator,
+        EncryptService $encryptService,
         EventDispatcherService $eventDispatcher
     ) {
         $this->userRepository = $userRepository;
         $this->createTokenService = $createTokenService;
         $this->validator = $validator;
+        $this->encryptService = $encryptService;
         $this->eventDispatcher = $eventDispatcher;
     }
 
@@ -40,7 +44,7 @@ class CreateTeacherHandler
             $command->getFirstName(),
             $command->getLastName(),
             $command->getEmail(),
-            $command->getPassword()
+            $this->encryptService->encryptPassword($command->getPassword())
         );
 
         $this->userRepository->save($teacher);
