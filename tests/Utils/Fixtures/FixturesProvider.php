@@ -24,6 +24,7 @@ class FixturesProvider
     {
         self::$fixtures = [
             new UserFixture(),
+            new TokenFixture(),
             new SessionFixture(),
         ];
     }

@@ -23,10 +23,11 @@ class Token
     private int $type;
     private bool $expired = false;
 
-    public function __construct(User $user, string $hash)
+    public function __construct(User $user, string $hash, int $type)
     {
         $this->user = $user;
         $this->hash = $hash;
+        $this->type = $type;
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
