@@ -8,6 +8,8 @@
   "Student Group not found": "Grupo de estudiantes no encontrado",
 
   "There is already an user with that email address": "Ya existe un usuario con esa dirección de correo",
+  "The user account is already confirmed": "La cuenta del usuario ya está confirmada",
+  "The account confirmation hash is required": "El hash de confirmación de cuenta es requerido",
   "The id of the user is required": "El id del usuario es requerido",
   "The id of the user must be a number": "El id del usuario debe ser numérico",
   "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",

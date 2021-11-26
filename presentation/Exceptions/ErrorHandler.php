@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Presentation\Exceptions;
 
+use Application\Exceptions\DomainException;
+use Application\Exceptions\DomainRuntimeException;
 use Application\Exceptions\ExistingEntityException;
+use Application\Exceptions\InvalidTokenTypeException;
 use Application\ValueObjects\HttpStatusCode;
 use Doctrine\ORM\EntityNotFoundException;
-use Application\Exceptions\DomainException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
@@ -29,8 +31,10 @@ class ErrorHandler extends ExceptionHandler
      */
     protected $dontReport = [
         DomainException::class,
+        DomainRuntimeException::class,
         InvalidArgumentException::class,
         InvalidBodyException::class,
+        InvalidTokenTypeException::class,
         NotFoundHttpException::class,
         EntityNotFoundException::class,
         NotFoundException::class,
@@ -55,7 +59,6 @@ class ErrorHandler extends ExceptionHandler
         }
 
         $error = [];
-        $eventDispatcher = null;
         $errorMessage = $e->getMessage();
         $errorFile = $e->getFile();
         $errorLine = $e->getLine();
@@ -74,7 +77,6 @@ class ErrorHandler extends ExceptionHandler
                 'organization' => $user->getOrganization()->getSlug()
             ];
         } else {
-            $user = null;
             $userData = [];
         }
 
@@ -131,6 +133,16 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_UNAUTHORIZED,
                 HttpStatusCode::UNAUTHORIZED,
+                $newSession,
+                $error,
+                $e->getMessage()
+            );
+        }
+
+        if ($e instanceof DomainRuntimeException) {
+            return $this->getErrorJSONResponse(
+                ResponseCodes::CODE_CONFLICT,
+                HttpStatusCode::CONFLICT,
                 $newSession,
                 $error,
                 $e->getMessage()

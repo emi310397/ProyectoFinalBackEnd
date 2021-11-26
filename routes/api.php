@@ -18,6 +18,10 @@ Route::post('/signup', 'Teacher\CreateTeacherAction@execute')
     ->name(Actions\Teacher\CreateTeacherAction::ROUTE_NAME)
     ->withoutMiddleware([AuthenticateMiddleware::class]);
 
+Route::post('/confirm', 'Auth\ConfirmUserAction@execute')
+    ->name(Actions\Auth\ConfirmUserAction::ROUTE_NAME)
+    ->withoutMiddleware([AuthenticateMiddleware::class]);
+
 Route::post('/logout', 'Auth\LogoutUserAction@execute')
     ->name(Actions\Auth\LogoutUserAction::ROUTE_NAME);
 
