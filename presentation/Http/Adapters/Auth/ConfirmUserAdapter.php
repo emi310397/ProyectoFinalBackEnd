@@ -46,7 +46,7 @@ class ConfirmUserAdapter extends CommandAdapter
 
     public function adapt(Request $request): ConfirmUserCommand
     {
-        $hash = (string)$request->route()->parameter(self::HASH_PARAM);
+        $hash = (string)$request->query(self::HASH_PARAM);
 
         $rules = $request->all();
         $rules[self::HASH_PARAM] = $hash;
