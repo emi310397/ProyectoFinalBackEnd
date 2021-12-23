@@ -18,7 +18,7 @@ class CreateActivityAdapter extends CommandAdapter
     private const TYPE_PARAM = 'type';
     private const DESCRIPTION_PARAM = 'description';
     private const BODY_PARAM = 'body';
-    private const TASK_ID_PARAM = 'taskId';
+    private const TASK_ID_PARAM = 'task';
 
     public function __construct(
         ValidatorServiceInterface $validator,
