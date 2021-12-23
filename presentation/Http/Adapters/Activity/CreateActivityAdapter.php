@@ -50,9 +50,9 @@ class CreateActivityAdapter extends CommandAdapter
             self::DESCRIPTION_PARAM . 'string' => __('The description of the activity must be a string'),
             self::BODY_PARAM . 'required' => __('The body of the activity is required'),
             self::BODY_PARAM . 'json' => __('The body of the activity must be a string json'),
-            self::TASK_ID_PARAM . 'required' => __('The description of the activity is required'),
-            self::TASK_ID_PARAM . 'string' => __('The description of the activity must be a number'),
-            self::TASK_ID_PARAM . 'gt' => __('The description of the activity must be greater than 0'),
+            self::TASK_ID_PARAM . 'required' => __('The id of the task is required'),
+            self::TASK_ID_PARAM . 'string' => __('The id of the task must be a number'),
+            self::TASK_ID_PARAM . 'gt' => __('The id of the task must be greater than 0'),
         ];
     }
 
