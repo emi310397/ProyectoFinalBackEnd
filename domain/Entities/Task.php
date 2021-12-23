@@ -23,6 +23,7 @@ class Task
     private DateTime $fromDate;
     private DateTime $toDate;
     private Collection $assignments;
+    private Collection $activities;
 
     public function __construct(
         string $title,
@@ -37,6 +38,7 @@ class Task
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;
         $this->assignments = new ArrayCollection();
+        $this->activities = new ArrayCollection();
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
@@ -100,5 +102,15 @@ class Task
     public function addAssignment(Assignment $assignment): void
     {
         $this->assignments->add($assignment);
+    }
+
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivities(Activity $activity): void
+    {
+        $this->activities->add($activity);
     }
 }
