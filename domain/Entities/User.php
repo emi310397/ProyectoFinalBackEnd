@@ -9,6 +9,7 @@ use Domain\Enums\UserStatuses;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
+use ReflectionClass;
 
 abstract class User
 {
@@ -77,10 +78,14 @@ abstract class User
         $this->password = $password;
     }
 
-
     public function getStatus(): int
     {
         return $this->status;
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return strtolower((new ReflectionClass($this))->getShortName()) === $role;
     }
 
     public function isNotActivated(): bool
