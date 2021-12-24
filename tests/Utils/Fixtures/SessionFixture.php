@@ -23,7 +23,7 @@ class SessionFixture extends Fixture
 
     public function getInstances(): array
     {
-        $session1 = new Session($this->getReference(UserFixture::STUDENT_USER_1), self::TEACHER_1_SESSION_1);
+        $session1 = new Session($this->getReference(UserFixture::TEACHER_USER_1), self::TEACHER_1_SESSION_1);
         $this->addReference(self::TEACHER_1_SESSION_1, $session1);
 
         $session2 = new Session($this->getReference(UserFixture::STUDENT_USER_2), self::STUDENT_1_SESSION_2);
