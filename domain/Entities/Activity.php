@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
+use DateTime;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
@@ -32,6 +33,9 @@ class Activity
         $this->description = $description;
         $this->body = $body;
         $this->task = $task;
+        $timestamp = new DateTime();
+        $this->setCreatedAt($timestamp);
+        $this->setUpdatedAt($timestamp);
     }
 
     public function getTitle(): string

@@ -23,10 +23,10 @@ $builder->createField('title', Types::TEXT)
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createField('fromDate', Types::DATE_IMMUTABLE)
+$builder->createField('fromDate', Types::DATE_MUTABLE)
     ->build();
 
-$builder->createField('toDate', Types::DATE_IMMUTABLE)
+$builder->createField('toDate', Types::DATE_MUTABLE)
     ->build();
 
 $builder->createOneToMany('assignments', Assignment::class)
