@@ -93,17 +93,10 @@ class ErrorHandler extends ExceptionHandler
             ];
         }
 
-        if ($request->attributes->get('newSession')) {
-            $newSession = $request->attributes->get('newSession');
-        } else {
-            $newSession = null;
-        }
-
         if ($e instanceof InvalidBodyException) {
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_WRONG_ARGS,
                 HttpStatusCode::UNPROCESSABLE_ENTITY,
-                $newSession,
                 $e->getErrors(),
                 $e->getMessage()
             );
@@ -113,7 +106,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_WRONG_ARGS,
                 HttpStatusCode::BAD_REQUEST,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -123,7 +115,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_NOT_FOUND,
                 HttpStatusCode::NOT_FOUND,
-                $newSession,
                 $error,
                 __('Route not found')
             );
@@ -133,7 +124,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_UNAUTHORIZED,
                 HttpStatusCode::UNAUTHORIZED,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -143,7 +133,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_CONFLICT,
                 HttpStatusCode::CONFLICT,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -153,7 +142,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_WRONG_ARGS,
                 HttpStatusCode::UNPROCESSABLE_ENTITY,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -163,7 +151,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_CONFLICT,
                 HttpStatusCode::CONFLICT,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -173,7 +160,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_CONFLICT,
                 HttpStatusCode::CONFLICT,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -183,7 +169,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_NOT_FOUND,
                 HttpStatusCode::NOT_FOUND,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -193,7 +178,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_NOT_FOUND,
                 HttpStatusCode::NOT_FOUND,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -203,7 +187,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_METHOD_NOT_ALLOWED,
                 HttpStatusCode::METHOD_NOT_ALLOWED,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -213,7 +196,6 @@ class ErrorHandler extends ExceptionHandler
             return $this->getErrorJSONResponse(
                 ResponseCodes::CODE_UNAUTHORIZED,
                 HttpStatusCode::UNAUTHORIZED,
-                $newSession,
                 $error,
                 $e->getMessage()
             );
@@ -222,7 +204,6 @@ class ErrorHandler extends ExceptionHandler
         return $this->getErrorJSONResponse(
             ResponseCodes::CODE_INTERNAL_ERROR,
             HttpStatusCode::INTERNAL_ERROR,
-            $newSession,
             $error,
             __('Oops! Something went wrong')
         );
@@ -231,14 +212,12 @@ class ErrorHandler extends ExceptionHandler
     private function getErrorJSONResponse(
         string $responseCode,
         int $httpStatusCode,
-        ?string $newSession = null,
         array $errors = [],
         string $message = 'Error'
     ): JsonResponse {
         $data = [
             'status' => $responseCode,
             'http_code' => $httpStatusCode,
-            'newSession' => $newSession,
             'message' => $message,
         ];
 
