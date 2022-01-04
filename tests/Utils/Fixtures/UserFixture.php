@@ -36,15 +36,15 @@ class UserFixture extends Fixture
 
     public function getInstances(): array
     {
-        $teacherUser1 = new Teacher('Alex', 'Turner', 'alexturner@example.com', Hash::make('123456789'));
+        $teacherUser1 = new Teacher('Teacher1FirstName', 'Teacher1LastName', 'teacher1@example.com', Hash::make('123456789'));
         $teacherUser1->activate();
         $this->addReference(self::TEACHER_USER_1, $teacherUser1);
 
-        $teacherUser2 = new Teacher('Alex', 'Turner', 'alexturner@example.com', Hash::make('123456789'));
+        $teacherUser2 = new Teacher('Teacher2FirstName', 'Teacher2LastName', 'teacher2@example.com', Hash::make('123456789'));
         $teacherUser2->activate();
         $this->addReference(self::TEACHER_USER_2, $teacherUser2);
 
-        $teacherUser3 = new Teacher('Alex', 'Turner', 'alexturner@example.com', Hash::make('123456789'));
+        $teacherUser3 = new Teacher('Teacher3FirstName', 'Teacher3LastName', 'teacher3@example.com', Hash::make('123456789'));
         $teacherUser3->activate();
         $this->addReference(self::TEACHER_USER_3, $teacherUser3);
 
