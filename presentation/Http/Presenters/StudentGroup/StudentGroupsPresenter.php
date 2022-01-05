@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Presentation\Http\Presenters\StudentGroup;
 
-use Application\Results\StudentGroup\StudentGroupResult;
-use Domain\Entities\Student;
+use Application\Results\StudentGroup\StudentGroupsResult;
+use Domain\Entities\StudentGroup;
 use Infrastructure\Presenter\Contracts\PresenterInterface;
 
 class StudentGroupsPresenter implements PresenterInterface
 {
-    private StudentGroupResult $result;
+    private StudentGroupsResult $result;
 
-    public function fromResult(StudentGroupResult $result): StudentGroupsPresenter
+    public function fromResult(StudentGroupsResult $result): StudentGroupsPresenter
     {
         $this->result = $result;
         return $this;
@@ -25,28 +25,24 @@ class StudentGroupsPresenter implements PresenterInterface
 
     public function getData(): array
     {
-        $studentGroup = $this->result->getStudentGroup();
+        $studentGroups = $this->result->getStudentGroups();
 
-        $studentsIds = $this->getStudentsIds($studentGroup->getStudents()->toArray());
+        $studentGroupsIds = $this->getStudentGroupsIds($studentGroups);
 
         return [
-            'id' => $studentGroup->getId(),
-            'name' => $studentGroup->getName(),
-            'description' => $studentGroup->getDescription(),
-            'course' => $studentGroup->getCourse()->getId(),
-            'students' => $studentsIds
+            'studentGroups' => $studentGroupsIds
         ];
     }
 
-    private function getStudentsIds(array $students): array
+    private function getStudentGroupsIds(array $studentGroups): array
     {
-        $studentsIds = [];
+        $studentGroupsIds = [];
 
-        /* @var Student $student */
-        foreach ($students as $student) {
-            $studentsIds[] = $student->getId();
+        /* @var StudentGroup $studentGroup */
+        foreach ($studentGroups as $studentGroup) {
+            $studentGroupsIds[] = $studentGroup->getId();
         }
 
-        return $studentsIds;
+        return $studentGroupsIds;
     }
 }

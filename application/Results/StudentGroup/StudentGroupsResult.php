@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace Application\Results\StudentGroup;
 
-use Domain\Entities\StudentGroup;
-
 class StudentGroupsResult
 {
-    private StudentGroup $studentGroup;
+    private array $studentGroups;
 
-    public function __construct(StudentGroup $studentGroup)
+    public function __construct(array $studentGroups)
     {
-        $this->studentGroup = $studentGroup;
+        $this->studentGroups = $studentGroups;
     }
 
-    public function getStudentGroup(): StudentGroup
+    public function getStudentGroups(): array
     {
-        return $this->studentGroup;
+        return $this->studentGroups;
     }
 }
