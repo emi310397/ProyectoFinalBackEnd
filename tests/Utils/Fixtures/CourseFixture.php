@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Domain\Entities\Course;
 
-class CoursesFixture extends Fixture
+class CourseFixture extends Fixture
 {
     public const COURSE_1 = 'course_1';
     public const COURSE_2 = 'course_2';

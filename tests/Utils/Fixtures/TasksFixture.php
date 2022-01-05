@@ -29,7 +29,7 @@ class TasksFixture extends Fixture
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-50 hours'))),
             new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_1_PCLASS_1)]
+            [$this->getReference(PClassFixture::COURSE_1_PCLASS_1)]
         );
         $this->addReference(self::TASK_1, $task1);
 
@@ -38,7 +38,7 @@ class TasksFixture extends Fixture
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-10 hours'))),
             new DateTime(date('Y-m-d H:i:s', strtotime('+10 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_1_PCLASS_2)]
+            [$this->getReference(PClassFixture::COURSE_1_PCLASS_2)]
         );
         $this->addReference(self::TASK_2, $task2);
 
@@ -47,7 +47,7 @@ class TasksFixture extends Fixture
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-50 hours'))),
             new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_2_PCLASS_1)]
+            [$this->getReference(PClassFixture::COURSE_2_PCLASS_1)]
         );
         $this->addReference(self::TASK_3, $task3);
 
