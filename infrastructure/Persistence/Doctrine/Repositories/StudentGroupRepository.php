@@ -7,6 +7,7 @@ namespace Infrastructure\Persistence\Doctrine\Repositories;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Domain\Entities\Course;
 use Domain\Entities\StudentGroup;
 use Domain\Interfaces\Repositories\StudentGroupRepositoryInterface;
 
@@ -39,5 +40,10 @@ class StudentGroupRepository extends BaseRepository implements StudentGroupRepos
         }
 
         return $studentGroup;
+    }
+
+    public function getAllByCourse(Course $course): ?array
+    {
+        return $this->findBy(['course' => $course, 'deletedAt' => null]);
     }
 }

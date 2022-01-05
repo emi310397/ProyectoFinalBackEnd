@@ -4,52 +4,52 @@ declare(strict_types=1);
 
 namespace Presentation\Http\Adapters\StudentGroup;
 
-use Application\Queries\StudentGroup\GetStudentGroupQuery;
 use Application\Queries\StudentGroup\GetStudentGroupsQuery;
 use Domain\Adapters\CommandAdapter;
-use Domain\Interfaces\Repositories\StudentGroupRepositoryInterface;
+use Domain\Interfaces\Repositories\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
 class GetStudentsGroupAdapter extends CommandAdapter
 {
-    private StudentGroupRepositoryInterface $studentGroupRepository;
+    private CourseRepositoryInterface $courseRepository;
 
-    private const ID_PARAM = 'id';
+    private const COURSE_ID_PARAM = 'id';
 
     public function __construct(
         ValidatorServiceInterface $validator,
-        StudentGroupRepositoryInterface $studentGroupRepository
-    ) {
+        CourseRepositoryInterface $courseRepository
+    )
+    {
         parent::__construct($validator);
-        $this->studentGroupRepository = $studentGroupRepository;
+        $this->courseRepository = $courseRepository;
     }
 
     public function getRules(): array
     {
         return [
-            self::ID_PARAM => 'required|integer|gt:0'
+            self::COURSE_ID_PARAM => 'required|integer|gt:0'
         ];
     }
 
     public function getMessages(): array
     {
         return [
-            self::ID_PARAM . '.required' => __('The id of the class is required'),
-            self::ID_PARAM . '.integer' => __('The id of the class must be a number'),
-            self::ID_PARAM . '.gt' => __('The id of the class must be a greater than 0')
+            self::COURSE_ID_PARAM . '.required' => __('The id of the course is required'),
+            self::COURSE_ID_PARAM . '.integer' => __('The id of the course must be a number'),
+            self::COURSE_ID_PARAM . '.gt' => __('The id of the course must be a greater than 0')
         ];
     }
 
     public function adapt(Request $request): GetStudentGroupsQuery
     {
         $rules = $request->all();
-        $id = (int)$request->route()->parameter(self::ID_PARAM);
-        $rules[self::ID_PARAM] = $id;
+        $id = (int)$request->route()->parameter(self::COURSE_ID_PARAM);
+        $rules[self::COURSE_ID_PARAM] = $id;
         $this->assertRulesAreValid($rules);
 
-        $studentGroup = $this->studentGroupRepository->getByIdOrFail($id);
+        $course = $this->courseRepository->getByIdOrFail($id);
 
-        return new GetStudentGroupsQuery($studentGroup);
+        return new GetStudentGroupsQuery($course);
     }
 }

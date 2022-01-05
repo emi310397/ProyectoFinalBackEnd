@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Application\Queries\StudentGroup;
 
 use Domain\CommandBus\CommandInterface;
-use Domain\Entities\StudentGroup;
+use Domain\Entities\Course;
 
 class GetStudentGroupsQuery implements CommandInterface
 {
-    private StudentGroup $studentGroup;
+    private Course $course;
 
-    public function __construct(StudentGroup $studentGroup)
+    public function __construct(Course $course)
     {
-        $this->studentGroup = $studentGroup;
+        $this->course = $course;
     }
 
-    public function getStudentGroup(): StudentGroup
+    public function getCourse(): Course
     {
-        return $this->studentGroup;
+        return $this->course;
     }
 }
