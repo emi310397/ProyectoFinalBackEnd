@@ -28,6 +28,21 @@ Route::post('/logout', 'Auth\LogoutUserAction@execute')
 //Teacher Routes
 Route::middleware(['role:teacher'])->group(
     function () {
+        Route::post('/courses', 'Course\CreateCourseAction@execute')
+            ->name(Actions\Course\CreateCourseAction::ROUTE_NAME);
+
+        Route::put('/courses/{id}', 'Course\EditCourseAction@execute')
+            ->name(Actions\Course\EditCourseAction::ROUTE_NAME);
+
+        Route::delete('/courses/{id}', 'Course\DeleteCourseAction@execute')
+            ->name(Actions\Course\DeleteCourseAction::ROUTE_NAME);
+
+        Route::get('/courses/{id}', 'Course\GetCourseAction@execute')
+            ->name(Actions\Course\GetCourseAction::ROUTE_NAME);
+
+        Route::get('/courses', 'Course\GetCoursesAction@execute')
+            ->name(Actions\Course\GetCoursesAction::ROUTE_NAME);
+
         Route::post('/classes', 'PClass\CreatePClassAction@execute')
             ->name(Actions\PClass\CreatePClassAction::ROUTE_NAME);
 
