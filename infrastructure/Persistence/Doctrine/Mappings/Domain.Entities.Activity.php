@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Domain\Entities\Course;
 use Domain\Entities\Task;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
@@ -12,22 +11,22 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 
 /** @psalm-suppress UndefinedGlobalVariable */
 $builder = new ClassMetadataBuilder($metadata);
-$builder->setTable('classes');
-
-$builder->createManyToOne('course', Course::class)
-    ->inversedBy('classes')
-    ->build();
+$builder->setTable('activities');
 
 $builder->createField('title', Types::TEXT)
+    ->build();
+
+$builder->createField('type', Types::INTEGER)
     ->build();
 
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createField('fromDate', Types::DATE_MUTABLE)
+$builder->createField('body', Types::TEXT)
     ->build();
 
-$builder->createField('toDate', Types::DATE_MUTABLE)
+$builder->createManyToOne('task', Task::class)
+    ->inversedBy('activities')
     ->build();
 
 SoftDeleteBuilder::addSoftDelete($builder);

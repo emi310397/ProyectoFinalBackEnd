@@ -5,6 +5,7 @@
   "Course not found": "Curso no encontrado",
   "PClass not found": "PClase no encontrada",
   "Task not found": "Tarea no encontrada",
+  "Activity not found": "Actividad no encontrada",
   "Student Group not found": "Grupo de estudiantes no encontrado",
 
   "There is already an user with that email address": "Ya existe un usuario con esa dirección de correo",
@@ -12,7 +13,7 @@
   "The account confirmation hash is required": "El hash de confirmación de cuenta es requerido",
   "The id of the user is required": "El id del usuario es requerido",
   "The id of the user must be a number": "El id del usuario debe ser numérico",
-  "The id of the user must be a greater than 0": "El id del usuario debe ser mayor a 0",
+  "The id of the user must be greater than 0": "El id del usuario debe ser mayor a 0",
   "The user first name is required": "El nombre del usuario es requerido",
   "The user first name must be a string": "El nombre del usuario debe ser texto",
   "The user last name is required": "El apellido del usuario es requerido",
@@ -29,7 +30,7 @@
   "The student groups of the assigment must be an array": "Los grupos de estudiantes de la asignación deben ser un array",
   "At least one student group id is required": "Al menos un id de grupo de estudiantes es requerido",
   "The student group id must be a number": "El id de grupo de estudiantes debe ser numérico",
-  "The student group id must be a greater than 0": "El id de grupo de estudiantes debe ser mayor a 0",
+  "The student group id must be greater than 0": "El id de grupo de estudiantes debe ser mayor a 0",
   "The student group ids can not be repeated": "Los ids de grupos de estudiantes no pueden estar repetidos",
   "There is a student group that do not belong to this course": "Hay un id de grupo de estudiantes que no pertenece a este curso",
 
@@ -43,7 +44,7 @@
 
   "The id of the task is required": "El id de la tarea es requerido",
   "The id of the task must be a number": "El id de la tarea debe ser numérico",
-  "The id of the task must be a greater than 0": "El id de la tarea debe ser mayor a 0",
+  "The id of the task must be greater than 0": "El id de la tarea debe ser mayor a 0",
   "The title of the task is required": "El título de la tarea es requerido",
   "The title of the task must be a string": "El título de la tarea debe ser texto",
   "The description of the task is required": "La descripción de la tarea es requerido",
@@ -56,5 +57,14 @@
 
   "The id of the assignment is required": "El id de la asignación es requerido",
   "The id of the assignment must be a number": "El id de la asignación debe ser numérico",
-  "The id of the assignment must be a greater than 0": "El id de la asignación debe ser mayor a 0"
+  "The id of the assignment must be greater than 0": "El id de la asignación debe ser mayor a 0",
+
+  "The title of the activity is required": "El id de la asignación debe ser numérico",
+  "The title of the activity must be a string": "El id de la asignación debe ser numérico",
+  "The type of the activity is required": "El id de la asignación debe ser numérico",
+  "The type of the activity must be a string": "El id de la asignación debe ser numérico",
+  "The description of the activity is required": "El id de la asignación debe ser numérico",
+  "The description of the activity must be a string": "El id de la asignación debe ser numérico",
+  "The body of the activity is required": "El id de la asignación debe ser numérico",
+  "The body of the activity must be a string json": "El id de la asignación debe ser numérico"
 }
