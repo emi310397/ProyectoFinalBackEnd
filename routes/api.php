@@ -58,16 +58,16 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/classes', 'PClass\GetPClassesAction@execute')
             ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
 
-        Route::post('/studentGroups', 'StudentGroup\CreateStudentGroupAction@execute')
+        Route::post('/student-groups', 'StudentGroup\CreateStudentGroupAction@execute')
             ->name(Actions\StudentGroup\CreateStudentGroupAction::ROUTE_NAME);
 
-        Route::put('/studentGroups/{id}', 'StudentGroup\EditStudentGroupAction@execute')
+        Route::put('/student-groups/{id}', 'StudentGroup\EditStudentGroupAction@execute')
             ->name(Actions\StudentGroup\EditStudentGroupAction::ROUTE_NAME);
 
-        Route::delete('/studentGroups/{id}', 'StudentGroup\DeleteStudentGroupAction@execute')
+        Route::delete('/student-groups/{id}', 'StudentGroup\DeleteStudentGroupAction@execute')
             ->name(Actions\StudentGroup\DeleteStudentGroupAction::ROUTE_NAME);
 
-        Route::get('/studentGroups/{id}', 'StudentGroup\GetStudentGroupAction@execute')
+        Route::get('/student-groups/{id}', 'StudentGroup\GetStudentGroupAction@execute')
             ->name(Actions\StudentGroup\GetStudentGroupAction::ROUTE_NAME);
 
         Route::get('courses/{id}/studentGroups', 'StudentGroup\GetStudentGroupsAction@execute')
@@ -105,5 +105,7 @@ Route::middleware(['role:student'])->group(
 //Teacher and Student Shared Routes
 Route::middleware('role:teacher,student')->group(
     function () {
+        Route::get('/current-user', 'User\GetCurrentUserAction@execute')
+            ->name(Actions\User\GetCurrentUserAction::ROUTE_NAME);
     }
 );

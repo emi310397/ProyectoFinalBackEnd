@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Http\Actions\StudentGroup;
+namespace Presentation\Http\Actions\User;
 
 use Domain\QueryBus\QueryBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Presentation\Http\Actions\BaseAction;
-use Presentation\Http\Adapters\StudentGroup\GetStudentsGroupAdapter;
-use Presentation\Http\Presenters\StudentGroup\StudentGroupsPresenter;
+use Presentation\Http\Adapters\User\GetCurrentUserAdapter;
+use Presentation\Http\Presenters\User\UserPresenter;
 
-class GetStudentGroupsAction extends BaseAction
+class GetCurrentUserAction extends BaseAction
 {
-    public const ROUTE_NAME = 'StudentGroup.getMany';
+    public const ROUTE_NAME = 'User.get';
 
-    private GetStudentsGroupAdapter $adapter;
+    private GetCurrentUserAdapter $adapter;
     private QueryBusInterface $queryBus;
-    private StudentGroupsPresenter $presenter;
+    private UserPresenter $presenter;
 
     public function __construct(
-        GetStudentsGroupAdapter $adapter,
+        GetCurrentUserAdapter $adapter,
         QueryBusInterface $queryBus,
-        StudentGroupsPresenter $presenter
+        UserPresenter $presenter
     ) {
         $this->adapter = $adapter;
         $this->queryBus = $queryBus;

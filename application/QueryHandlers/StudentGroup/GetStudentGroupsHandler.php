@@ -17,11 +17,10 @@ class GetStudentGroupsHandler
     private StudentGroupRepositoryInterface $studentGroupRepository;
 
     public function __construct(
-        CurrentUserInterface            $currentUser,
+        CurrentUserInterface $currentUser,
         UserToCourseMembershipValidator $validator,
         StudentGroupRepositoryInterface $studentGroupRepository
-    )
-    {
+    ) {
         $this->currentUser = $currentUser;
         $this->validator = $validator;
         $this->studentGroupRepository = $studentGroupRepository;
