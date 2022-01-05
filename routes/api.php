@@ -58,6 +58,9 @@ Route::middleware(['role:teacher'])->group(
         Route::post('/assigment', 'Assignment\CreateAssignmentAction@execute')
             ->name(Actions\Assignment\CreateAssignmentAction::ROUTE_NAME);
 
+        Route::post('/activities', 'Activity\CreateActivityAction@execute')
+            ->name(Actions\Activity\CreateActivityAction::ROUTE_NAME);
+
         Route::post('/student', 'Student\CreateStudentAction@execute')
             ->name(Actions\Student\CreateStudentAction::ROUTE_NAME);
     }

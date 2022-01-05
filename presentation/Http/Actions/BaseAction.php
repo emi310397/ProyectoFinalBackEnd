@@ -10,8 +10,6 @@ use Presentation\Http\Enums\ResponseCodes;
 abstract class BaseAction
 {
     protected int $statusCode = HttpStatusCode::OK;
-    protected ?string $newSession = null;
-    protected ?string $newRenovateHash = null;
 
     public function getStatusCode(): int
     {
@@ -23,17 +21,6 @@ abstract class BaseAction
         $this->statusCode = $statusCode;
 
         return $this;
-    }
-
-    public function withNewSession(): void
-    {
-        if (request()->headers->get('newSession')) {
-            $this->newSession = request()->headers->get('newSession');
-        }
-
-        if (request()->headers->get('newRenovateHash')) {
-            $this->newRenovateHash = request()->headers->get('newRenovateHash');
-        }
     }
 
     public function respondWithSuccess(array $data = [], string $message = 'Success'): JsonResponse
@@ -51,14 +38,9 @@ abstract class BaseAction
 
     protected function respondWithArray(array $array, array $headers = []): JsonResponse
     {
-        $this->withNewSession();
         return Response::json(
             $array,
             $this->statusCode,
-            $headers + [
-                'newSession' => $this->newSession,
-                'newRenovateHash' => $this->newRenovateHash
-            ]
         );
     }
 
@@ -71,14 +53,12 @@ abstract class BaseAction
                     'http_code' => HttpStatusCode::CREATED,
                     'message' => $message,
                     'data' => $data,
-                    'newSession' => $this->newSession
                 ]
             );
     }
 
     public function respondWithAccepted(
         array $data = [],
-        ?string $newSession = null,
         string $message = 'Accepted'
     ): JsonResponse {
         return $this->withStatusCode(HttpStatusCode::ACCEPTED)
@@ -88,7 +68,6 @@ abstract class BaseAction
                     'http_code' => HttpStatusCode::ACCEPTED,
                     'message' => $message,
                     'data' => $data,
-                    'newSession' => $newSession
                 ]
             );
     }

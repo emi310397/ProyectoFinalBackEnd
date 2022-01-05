@@ -12,10 +12,6 @@ class AccessControlExposeHeadersMiddleware
 
         $headers = $response->headers->all();
 
-        return $response->withHeaders(
-            $headers + [
-                'Access-Control-Expose-Headers' => 'newSession, newRenovateHash, spa-version'
-            ]
-        );
+        return $response->withHeaders($headers);
     }
 }
