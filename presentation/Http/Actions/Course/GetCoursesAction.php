@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Http\Actions\Assignment;
+namespace Presentation\Http\Actions\Course;
 
 use Domain\QueryBus\QueryBusInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Presentation\Http\Actions\BaseAction;
-use Presentation\Http\Adapters\PClass\GetPClassesAdapter;
-use Presentation\Http\Presenters\Assignment\AssignmentsPresenter;
+use Presentation\Http\Adapters\Course\GetCoursesAdapter;
+use Presentation\Http\Presenters\Course\CoursesPresenter;
 
-class GetAssignmentsAction extends BaseAction
+class GetCoursesAction extends BaseAction
 {
-    public const ROUTE_NAME = 'Assignment.getMany';
+    public const ROUTE_NAME = 'Course.getMany';
 
-    private GetPClassesAdapter $adapter;
+    private GetCoursesAdapter $adapter;
     private QueryBusInterface $queryBus;
-    private AssignmentsPresenter $presenter;
+    private CoursesPresenter $presenter;
 
     public function __construct(
-        GetPClassesAdapter $adapter,
+        GetCoursesAdapter $adapter,
         QueryBusInterface $queryBus,
-        AssignmentsPresenter $presenter
+        CoursesPresenter $presenter
     ) {
         $this->adapter = $adapter;
         $this->queryBus = $queryBus;

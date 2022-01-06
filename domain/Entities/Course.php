@@ -19,11 +19,11 @@ class Course
 
     private string $title;
     private string $description;
-    private User $teacher;
+    private Teacher $teacher;
     private Collection $students;
     private Collection $classes;
 
-    public function __construct(string $title, string $description, User $teacher)
+    public function __construct(string $title, string $description, Teacher $teacher)
     {
         $this->title = $title;
         $this->description = $description;
@@ -55,7 +55,7 @@ class Course
         $this->description = $description;
     }
 
-    public function getTeacher(): User
+    public function getTeacher(): Teacher
     {
         return $this->teacher;
     }

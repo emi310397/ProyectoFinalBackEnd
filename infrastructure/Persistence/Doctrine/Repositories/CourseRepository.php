@@ -8,6 +8,9 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Entities\Course;
+use Domain\Entities\Student;
+use Domain\Entities\Teacher;
+use Domain\Entities\User;
 use Domain\Interfaces\Repositories\CourseRepositoryInterface;
 
 /**
@@ -39,5 +42,10 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         }
 
         return $course;
+    }
+
+    public function getAllByTeacher(Teacher $teacher): ?array
+    {
+        return $this->findBy(['teacher' => $teacher, 'deletedAt' => null]);
     }
 }

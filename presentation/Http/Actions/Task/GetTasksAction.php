@@ -13,7 +13,7 @@ use Presentation\Http\Presenters\Task\TasksPresenter;
 
 class GetTasksAction extends BaseAction
 {
-    public const ROUTE_NAME = 'Tasks.get';
+    public const ROUTE_NAME = 'Task.getMany';
 
     private GetTasksAdapter $adapter;
     private QueryBusInterface $queryBus;

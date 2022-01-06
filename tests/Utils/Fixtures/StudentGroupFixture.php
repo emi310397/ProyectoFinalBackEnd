@@ -51,7 +51,6 @@ class StudentGroupFixture extends Fixture
             [
                 $this->getReference(UserFixture::STUDENT_USER_8),
                 $this->getReference(UserFixture::STUDENT_USER_9),
-                $this->getReference(UserFixture::NON_ACTIVATED_STUDENT_USER),
             ]
         );
         $this->addReference(self::STUDENT_GROUP_3, $studentGroup3);

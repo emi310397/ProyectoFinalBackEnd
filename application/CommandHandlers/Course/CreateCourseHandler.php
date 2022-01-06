@@ -24,7 +24,7 @@ class CreateCourseHandler
 
     public function handle(CreateCourseCommand $command): void
     {
-        $teacher = $this->currentUser->getUser()->getTeacher();
+        $teacher = $this->currentUser->getUser();
 
         $course = new Course(
             $command->getTitle(),

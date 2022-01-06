@@ -13,7 +13,7 @@ use Presentation\Http\Presenters\PClass\PClassesPresenter;
 
 class GetPClassesAction extends BaseAction
 {
-    public const ROUTE_NAME = 'PClasses.get';
+    public const ROUTE_NAME = 'PClass.getMany';
 
     private GetPClassesAdapter $adapter;
     private QueryBusInterface $queryBus;

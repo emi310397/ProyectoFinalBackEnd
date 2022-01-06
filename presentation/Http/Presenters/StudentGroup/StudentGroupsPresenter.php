@@ -27,10 +27,8 @@ class StudentGroupsPresenter implements PresenterInterface
     {
         $studentGroups = $this->result->getStudentGroups();
 
-        $studentGroupsIds = $this->getStudentGroupsIds($studentGroups);
-
         return [
-            'studentGroups' => $studentGroupsIds
+            'studentGroups' => $this->getStudentGroupsIds($studentGroups)
         ];
     }
 

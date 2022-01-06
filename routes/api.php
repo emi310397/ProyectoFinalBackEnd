@@ -40,9 +40,6 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/courses/{id}', 'Course\GetCourseAction@execute')
             ->name(Actions\Course\GetCourseAction::ROUTE_NAME);
 
-        Route::get('/courses', 'Course\GetCoursesAction@execute')
-            ->name(Actions\Course\GetCoursesAction::ROUTE_NAME);
-
         Route::post('/classes', 'PClass\CreatePClassAction@execute')
             ->name(Actions\PClass\CreatePClassAction::ROUTE_NAME);
 
@@ -70,7 +67,7 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/student-groups/{id}', 'StudentGroup\GetStudentGroupAction@execute')
             ->name(Actions\StudentGroup\GetStudentGroupAction::ROUTE_NAME);
 
-        Route::get('courses/{id}/studentGroups', 'StudentGroup\GetStudentGroupsAction@execute')
+        Route::get('courses/{id}/student-groups', 'StudentGroup\GetStudentGroupsAction@execute')
             ->name(Actions\StudentGroup\GetStudentGroupsAction::ROUTE_NAME);
 
         Route::post('/tasks', 'Task\CreateTaskAction@execute')
@@ -107,5 +104,8 @@ Route::middleware('role:teacher,student')->group(
     function () {
         Route::get('/current-user', 'User\GetCurrentUserAction@execute')
             ->name(Actions\User\GetCurrentUserAction::ROUTE_NAME);
+
+        Route::get('/courses', 'Course\GetCoursesAction@execute')
+            ->name(Actions\Course\GetCoursesAction::ROUTE_NAME);
     }
 );
