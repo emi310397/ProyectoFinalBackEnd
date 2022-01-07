@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Application\Queries\Task;
 
 use Domain\CommandBus\CommandInterface;
-use Domain\Entities\User;
+use Domain\Entities\Course;
 
 class GetTasksQuery implements CommandInterface
 {
-    private User $user;
+    private Course $course;
 
-    public function __construct(User $user)
+    public function __construct(Course $course)
     {
-        $this->user = $user;
+        $this->course = $course;
     }
 
-    public function getUser(): User
+    public function getCourse(): Course
     {
-        return $this->user;
+        return $this->course;
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Validators\Course;
 
+use Application\Exceptions\AccessDeniedException;
 use Application\Exceptions\DomainException;
 use Application\Exceptions\DomainRuntimeException;
 use Domain\Entities\Course;
@@ -54,7 +55,7 @@ class UserToCourseMembershipValidator
     private function validateIfTeacherBelongsToCourse(User $user, Course $course)
     {
         if (!($course->getTeacher() === $user)) {
-            throw new DomainException(__('The teacher does not belong to this course'));
+            throw new AccessDeniedException(__('The teacher does not belong to this course'));
         }
     }
 
@@ -71,7 +72,7 @@ class UserToCourseMembershipValidator
         }
 
         if (!$userInGroup) {
-            throw new DomainException(__('The student does not belong to this course'));
+            throw new AccessDeniedException(__('The student does not belong to this course'));
         }
     }
 }

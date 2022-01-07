@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Interfaces\Repositories;
 
+use Domain\Entities\Course;
 use Domain\Entities\Task;
-use Domain\Entities\User;
 
 /**
  * Interface TaskRepositoryInterface
@@ -24,5 +24,5 @@ interface TaskRepositoryInterface extends BaseRepositoryInterface
 {
     public function getByIdOrFail(int $id): Task;
 
-    public function getAllByUser(User $user): array;
+    public function getAllByCourse(Course $course): array;
 }

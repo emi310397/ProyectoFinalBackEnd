@@ -7,8 +7,8 @@ namespace Infrastructure\Persistence\Doctrine\Repositories;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Domain\Entities\Course;
 use Domain\Entities\Task;
-use Domain\Entities\User;
 use Domain\Interfaces\Repositories\TaskRepositoryInterface;
 
 /**
@@ -42,12 +42,12 @@ class TaskRepository extends BaseRepository implements TaskRepositoryInterface
         return $task;
     }
 
-    public function getAllByUser(User $user): array
+    public function getAllByCourse(Course $course): array
     {
         $qb = $this->createQueryBuilder('tasks');
         $qb->where('tasks.deletedAt IS NULL')
-            ->andWhere('IDENTITY(tasks.user) = :user')
-            ->setParameter('user', $user->getId());
+            ->andWhere('IDENTITY(tasks.course) = :course')
+            ->setParameter('course', $course->getId());
         return $qb->getQuery()->execute();
     }
 }
