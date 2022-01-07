@@ -52,9 +52,6 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/classes/{id}', 'PClass\GetPClassAction@execute')
             ->name(Actions\PClass\GetPClassAction::ROUTE_NAME);
 
-        Route::get('/classes', 'PClass\GetPClassesAction@execute')
-            ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
-
         Route::post('/student-groups', 'StudentGroup\CreateStudentGroupAction@execute')
             ->name(Actions\StudentGroup\CreateStudentGroupAction::ROUTE_NAME);
 
@@ -67,20 +64,17 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/student-groups/{id}', 'StudentGroup\GetStudentGroupAction@execute')
             ->name(Actions\StudentGroup\GetStudentGroupAction::ROUTE_NAME);
 
-        Route::get('courses/{id}/student-groups', 'StudentGroup\GetStudentGroupsAction@execute')
-            ->name(Actions\StudentGroup\GetStudentGroupsAction::ROUTE_NAME);
-
         Route::post('/tasks', 'Task\CreateTaskAction@execute')
             ->name(Actions\Task\CreateTaskAction::ROUTE_NAME);
 
-        Route::put('/tasks', 'Task\EditTaskAction@execute')
+        Route::put('/tasks/{id}', 'Task\EditTaskAction@execute')
             ->name(Actions\Task\EditTaskAction::ROUTE_NAME);
+
+        Route::delete('/tasks/{id}', 'Task\DeleteTaskAction@execute')
+            ->name(Actions\Task\DeleteTaskAction::ROUTE_NAME);
 
         Route::get('/tasks/{id}', 'Task\GetTaskAction@execute')
             ->name(Actions\Task\GetTaskAction::ROUTE_NAME);
-
-        Route::get('/tasks', 'Task\GetTasksAction@execute')
-            ->name(Actions\Task\GetTasksAction::ROUTE_NAME);
 
         Route::post('/assigment', 'Assignment\CreateAssignmentAction@execute')
             ->name(Actions\Assignment\CreateAssignmentAction::ROUTE_NAME);
@@ -107,5 +101,14 @@ Route::middleware('role:teacher,student')->group(
 
         Route::get('/courses', 'Course\GetCoursesAction@execute')
             ->name(Actions\Course\GetCoursesAction::ROUTE_NAME);
+
+        Route::get('courses/{id}/student-groups', 'StudentGroup\GetStudentGroupsAction@execute')
+            ->name(Actions\StudentGroup\GetStudentGroupsAction::ROUTE_NAME);
+
+        Route::get('courses/{id}/classes', 'PClass\GetPClassesAction@execute')
+            ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
+
+        Route::get('courses/{id}/tasks', 'Task\GetTasksAction@execute')
+            ->name(Actions\Task\GetTasksAction::ROUTE_NAME);
     }
 );
