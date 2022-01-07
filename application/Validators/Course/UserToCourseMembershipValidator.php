@@ -4,22 +4,38 @@ declare(strict_types=1);
 
 namespace Application\Validators\Course;
 
+use Application\Exceptions\DomainException;
 use Application\Exceptions\DomainRuntimeException;
 use Domain\Entities\Course;
 use Domain\Entities\Student;
 use Domain\Entities\StudentGroup;
 use Domain\Entities\Teacher;
 use Domain\Entities\User;
+use Domain\Interfaces\CurrentUserInterface;
 use Domain\Interfaces\Repositories\StudentGroupRepositoryInterface;
-use DomainException;
 
 class UserToCourseMembershipValidator
 {
+    private CurrentUserInterface $currentUser;
     private StudentGroupRepositoryInterface $studentGroupRepository;
 
-    public function __construct(StudentGroupRepositoryInterface $studentGroupRepository)
-    {
+    public function __construct(
+        CurrentUserInterface $currentUser,
+        StudentGroupRepositoryInterface $studentGroupRepository
+    ) {
+        $this->currentUser = $currentUser;
         $this->studentGroupRepository = $studentGroupRepository;
+    }
+
+    public function validateCurrentUser(Course $course): void
+    {
+        $currentUser = $this->currentUser->getUser();
+
+        if ($currentUser) {
+            $this->validate($currentUser, $course);
+        } else {
+            throw new DomainException(__('No current user found'));
+        }
     }
 
     public function validate(User $user, Course $course): void
