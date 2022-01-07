@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Domain\Entities\Assignment;
-use Domain\Entities\PClass;
+use Domain\Entities\Course;
 use Infrastructure\Persistence\Doctrine\Builders\CurrentTimestampBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\IdentityBuilder;
 use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
@@ -14,7 +14,8 @@ use Infrastructure\Persistence\Doctrine\Builders\SoftDeleteBuilder;
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable('tasks');
 
-$builder->createManyToMany('classes', PClass::class)
+$builder->createManyToOne('course', Course::class)
+    ->inversedBy('tasks')
     ->build();
 
 $builder->createField('title', Types::TEXT)

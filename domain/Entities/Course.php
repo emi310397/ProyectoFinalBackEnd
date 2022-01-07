@@ -22,14 +22,19 @@ class Course
     private Teacher $teacher;
     private Collection $students;
     private Collection $classes;
+    private Collection $tasks;
 
-    public function __construct(string $title, string $description, Teacher $teacher)
-    {
+    public function __construct(
+        string $title,
+        string $description,
+        Teacher $teacher
+    ) {
         $this->title = $title;
         $this->description = $description;
         $this->teacher = $teacher;
         $this->students = new ArrayCollection();
         $this->classes = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
@@ -78,5 +83,15 @@ class Course
     public function addClass(PClass $class): void
     {
         $this->classes->add($class);
+    }
+
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): void
+    {
+        $this->tasks->add($task);
     }
 }

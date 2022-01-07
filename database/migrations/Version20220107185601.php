@@ -5,7 +5,7 @@ namespace Database\Migrations;
 use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema as Schema;
 
-class Version20220105191641 extends AbstractMigration
+class Version20220107185601 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -21,8 +21,7 @@ class Version20220105191641 extends AbstractMigration
         $this->addSql('CREATE TABLE sessions (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, hash LONGTEXT NOT NULL, expired TINYINT(1) NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, INDEX IDX_9A609D13A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE student_groups (id INT AUTO_INCREMENT NOT NULL, course_id INT DEFAULT NULL, name LONGTEXT NOT NULL, description LONGTEXT NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, INDEX IDX_7E5BE1F0591CC992 (course_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE student_student_group (student_group_id INT NOT NULL, student_id INT NOT NULL, INDEX IDX_B06BC5C64DDF95DC (student_group_id), INDEX IDX_B06BC5C6CB944F1A (student_id), PRIMARY KEY(student_group_id, student_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE tasks (id INT AUTO_INCREMENT NOT NULL, title LONGTEXT NOT NULL, description LONGTEXT NOT NULL, from_date DATE NOT NULL, to_date DATE NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE p_class_task (task_id INT NOT NULL, p_class_id INT NOT NULL, INDEX IDX_B150EA658DB60186 (task_id), INDEX IDX_B150EA65370AB730 (p_class_id), PRIMARY KEY(task_id, p_class_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE tasks (id INT AUTO_INCREMENT NOT NULL, course_id INT DEFAULT NULL, title LONGTEXT NOT NULL, description LONGTEXT NOT NULL, from_date DATE NOT NULL, to_date DATE NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, INDEX IDX_50586597591CC992 (course_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tokens (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, hash LONGTEXT NOT NULL, type INT NOT NULL, expired TINYINT(1) NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, INDEX IDX_AA5A118EA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE users (id INT AUTO_INCREMENT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email LONGTEXT NOT NULL, password LONGTEXT NOT NULL, status INT NOT NULL, deleted_at DATETIME DEFAULT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, rol VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE activities ADD CONSTRAINT FK_B5F1AFE58DB60186 FOREIGN KEY (task_id) REFERENCES tasks (id)');
@@ -34,8 +33,7 @@ class Version20220105191641 extends AbstractMigration
         $this->addSql('ALTER TABLE student_groups ADD CONSTRAINT FK_7E5BE1F0591CC992 FOREIGN KEY (course_id) REFERENCES courses (id)');
         $this->addSql('ALTER TABLE student_student_group ADD CONSTRAINT FK_B06BC5C64DDF95DC FOREIGN KEY (student_group_id) REFERENCES student_groups (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE student_student_group ADD CONSTRAINT FK_B06BC5C6CB944F1A FOREIGN KEY (student_id) REFERENCES users (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE p_class_task ADD CONSTRAINT FK_B150EA658DB60186 FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE p_class_task ADD CONSTRAINT FK_B150EA65370AB730 FOREIGN KEY (p_class_id) REFERENCES classes (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE tasks ADD CONSTRAINT FK_50586597591CC992 FOREIGN KEY (course_id) REFERENCES courses (id)');
         $this->addSql('ALTER TABLE tokens ADD CONSTRAINT FK_AA5A118EA76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
     }
 
@@ -46,13 +44,12 @@ class Version20220105191641 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE p_class_task DROP FOREIGN KEY FK_B150EA65370AB730');
         $this->addSql('ALTER TABLE classes DROP FOREIGN KEY FK_2ED7EC5591CC992');
         $this->addSql('ALTER TABLE student_groups DROP FOREIGN KEY FK_7E5BE1F0591CC992');
+        $this->addSql('ALTER TABLE tasks DROP FOREIGN KEY FK_50586597591CC992');
         $this->addSql('ALTER TABLE student_student_group DROP FOREIGN KEY FK_B06BC5C64DDF95DC');
         $this->addSql('ALTER TABLE activities DROP FOREIGN KEY FK_B5F1AFE58DB60186');
         $this->addSql('ALTER TABLE assignments DROP FOREIGN KEY FK_308A50DD8DB60186');
-        $this->addSql('ALTER TABLE p_class_task DROP FOREIGN KEY FK_B150EA658DB60186');
         $this->addSql('ALTER TABLE assignments DROP FOREIGN KEY FK_308A50DDCB944F1A');
         $this->addSql('ALTER TABLE courses DROP FOREIGN KEY FK_A9A55A4C41807E1D');
         $this->addSql('ALTER TABLE sessions DROP FOREIGN KEY FK_9A609D13A76ED395');
@@ -66,7 +63,6 @@ class Version20220105191641 extends AbstractMigration
         $this->addSql('DROP TABLE student_groups');
         $this->addSql('DROP TABLE student_student_group');
         $this->addSql('DROP TABLE tasks');
-        $this->addSql('DROP TABLE p_class_task');
         $this->addSql('DROP TABLE tokens');
         $this->addSql('DROP TABLE users');
     }

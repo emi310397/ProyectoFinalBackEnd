@@ -17,7 +17,7 @@ class Task
     use TimestampsTrait;
     use IdentityTrait;
 
-    private Collection $classes;
+    private Course $course;
     private string $title;
     private string $description;
     private DateTime $fromDate;
@@ -26,13 +26,13 @@ class Task
     private Collection $activities;
 
     public function __construct(
+        Course $course,
         string $title,
         string $description,
         DateTime $fromDate,
-        DateTime $toDate,
-        array $classes = []
+        DateTime $toDate
     ) {
-        $this->classes = new ArrayCollection($classes);
+        $this->course = $course;
         $this->title = $title;
         $this->description = $description;
         $this->fromDate = $fromDate;
@@ -44,14 +44,9 @@ class Task
         $this->setUpdatedAt($timestamp);
     }
 
-    public function getClasses(): Collection
+    public function getCourse(): Course
     {
-        return $this->classes;
-    }
-
-    public function addClasses(PClass $class): void
-    {
-        $this->classes->add($class);
+        return $this->course;
     }
 
     public function getTitle(): string
