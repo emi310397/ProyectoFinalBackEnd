@@ -41,19 +41,6 @@ Route::middleware(['role:teacher'])->group(
         Route::get('/courses/{id}', 'Course\GetCourseAction@execute')
             ->name(Actions\Course\GetCourseAction::ROUTE_NAME);
 
-//--------------------Class--------------------
-        Route::post('/classes', 'PClass\CreatePClassAction@execute')
-            ->name(Actions\PClass\CreatePClassAction::ROUTE_NAME);
-
-        Route::put('/classes/{id}', 'PClass\EditPClassAction@execute')
-            ->name(Actions\PClass\EditPClassAction::ROUTE_NAME);
-
-        Route::delete('/classes/{id}', 'PClass\DeletePClassAction@execute')
-            ->name(Actions\PClass\DeletePClassAction::ROUTE_NAME);
-
-        Route::get('/classes/{id}', 'PClass\GetPClassAction@execute')
-            ->name(Actions\PClass\GetPClassAction::ROUTE_NAME);
-
 //--------------------Student Group--------------------
         Route::post('/student-groups', 'StudentGroup\CreateStudentGroupAction@execute')
             ->name(Actions\StudentGroup\CreateStudentGroupAction::ROUTE_NAME);
@@ -111,9 +98,6 @@ Route::middleware('role:teacher,student')->group(
 
         Route::get('courses/{id}/student-groups', 'StudentGroup\GetStudentGroupsAction@execute')
             ->name(Actions\StudentGroup\GetStudentGroupsAction::ROUTE_NAME);
-
-        Route::get('courses/{id}/classes', 'PClass\GetPClassesAction@execute')
-            ->name(Actions\PClass\GetPClassesAction::ROUTE_NAME);
 
         Route::get('courses/{id}/tasks', 'Task\GetTasksAction@execute')
             ->name(Actions\Task\GetTasksAction::ROUTE_NAME);

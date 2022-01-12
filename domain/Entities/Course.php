@@ -21,7 +21,6 @@ class Course
     private string $description;
     private Teacher $teacher;
     private Collection $students;
-    private Collection $classes;
     private Collection $tasks;
 
     public function __construct(
@@ -33,7 +32,6 @@ class Course
         $this->description = $description;
         $this->teacher = $teacher;
         $this->students = new ArrayCollection();
-        $this->classes = new ArrayCollection();
         $this->tasks = new ArrayCollection();
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
@@ -73,16 +71,6 @@ class Course
     public function addStudents(StudentGroup $students): void
     {
         $this->students->add($students);
-    }
-
-    public function getClasses(): Collection
-    {
-        return $this->classes;
-    }
-
-    public function addClass(PClass $class): void
-    {
-        $this->classes->add($class);
     }
 
     public function getTasks(): Collection
