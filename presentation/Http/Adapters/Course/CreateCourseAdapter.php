@@ -55,9 +55,9 @@ class CreateCourseAdapter extends CommandAdapter
         return new CreateCourseCommand(
             $request->get(self::TITLE_PARAM),
             $request->get(self::DESCRIPTION_PARAM),
-            $request->get(self::DAYS_PARAM),
             $request->get(self::FROM_DATE_PARAM),
-            $request->get(self::TO_DATE_PARAM)
+            $request->get(self::TO_DATE_PARAM),
+            $request->get(self::DAYS_PARAM)
         );
     }
 }
