@@ -12,12 +12,18 @@ class EditCourseCommand implements CommandInterface
     private Course $course;
     private string $title;
     private string $description;
+    private array $days;
 
-    public function __construct(Course $course, string $title, string $description)
-    {
+    public function __construct(
+        Course $course,
+        string $title,
+        string $description,
+        array $days = null
+    ) {
         $this->course = $course;
         $this->title = $title;
         $this->description = $description;
+        $this->days = $days;
     }
 
     public function getCourse(): Course
@@ -33,5 +39,10 @@ class EditCourseCommand implements CommandInterface
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getDays(): ?array
+    {
+        return $this->days;
     }
 }

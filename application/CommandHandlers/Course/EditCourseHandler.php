@@ -24,6 +24,7 @@ class EditCourseHandler
 
         $command->getTitle() ? $course->setTitle($command->getTitle()) : null;
         $command->getDescription() ? $course->setDescription($command->getDescription()) : null;
+        $command->getDays() ? $course->setDays($command->getDays()) : null;
         $course->setUpdatedAt(new DateTime());
 
         $this->courseRepository->update();

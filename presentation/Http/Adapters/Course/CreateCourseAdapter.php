@@ -42,7 +42,7 @@ class CreateCourseAdapter extends CommandAdapter
     public function adapt(Request $request): CreateCourseCommand
     {
         $this->assertRulesAreValid($request->all());
-//dd($request->get(self::DAYS_PARAM));
+
         return new CreateCourseCommand(
             $request->get(self::TITLE_PARAM),
             $request->get(self::DESCRIPTION_PARAM),
