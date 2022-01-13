@@ -10,6 +10,7 @@ use Application\Exceptions\ExistingEntityException;
 use Application\Exceptions\InvalidTokenTypeException;
 use Application\ValueObjects\HttpStatusCode;
 use Doctrine\ORM\EntityNotFoundException;
+use Domain\Entities\User;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
@@ -68,13 +69,14 @@ class ErrorHandler extends ExceptionHandler
         $jsonInput = $sensitiveFieldsFilter->filter($request->json()->all());
 
         if ($request->attributes->get('user')) {
+            /* @var User $user */
             $user = $request->attributes->get('user');
             $userData = [
                 'id' => $user->getId(),
                 'firstName' => $user->getFirstName(),
                 'lastName' => $user->getLastName(),
-                'roles' => $user->getRoles(),
-                'organization' => $user->getOrganization()->getSlug()
+                'status' => $user->getStatus(),
+                'role' => $user->hasRole("teacher")? "teacher": "student"
             ];
         } else {
             $userData = [];
