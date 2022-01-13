@@ -7,6 +7,7 @@ namespace Domain\Entities;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Enums\DaysOfTheWeek;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
@@ -19,6 +20,7 @@ class Course
 
     private string $title;
     private string $description;
+    private array $days;
     private Teacher $teacher;
     private Collection $students;
     private Collection $tasks;
@@ -26,11 +28,13 @@ class Course
     public function __construct(
         string $title,
         string $description,
-        Teacher $teacher
+        Teacher $teacher,
+        ?array $days = null
     ) {
         $this->title = $title;
         $this->description = $description;
         $this->teacher = $teacher;
+        $this->days = $days ?: DaysOfTheWeek::ALL_DAYS;
         $this->students = new ArrayCollection();
         $this->tasks = new ArrayCollection();
         $timestamp = new DateTime();
@@ -56,6 +60,16 @@ class Course
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getDays(): array
+    {
+        return $this->days;
+    }
+
+    public function setDays(array $days): void
+    {
+        $this->days = $days;
     }
 
     public function getTeacher(): Teacher

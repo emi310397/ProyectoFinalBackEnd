@@ -33,7 +33,8 @@ class CourseFixture extends Fixture
         $course2 = new Course(
             'Course 2',
             'course description 2',
-            $this->getReference(UserFixture::TEACHER_USER_2)
+            $this->getReference(UserFixture::TEACHER_USER_2),
+            [1, 3, 5]
         );
         $this->addReference(self::COURSE_2, $course2);
 

@@ -20,7 +20,11 @@ $builder->createField('title', Types::TEXT)
 $builder->createField('description', Types::TEXT)
     ->build();
 
-$builder->createOneToOne('teacher', Teacher::class)
+$builder->createField('days', Types::ARRAY)
+    ->build();
+
+$builder->createManyToOne('teacher', Teacher::class)
+    ->inversedBy('courses')
     ->build();
 
 $builder->createOneToMany('students', StudentGroup::class)
