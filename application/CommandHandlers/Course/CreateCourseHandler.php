@@ -33,6 +33,8 @@ class CreateCourseHandler
         $course = new Course(
             $command->getTitle(),
             $command->getDescription(),
+            $command->getFromDate(),
+            $command->getToDate(),
             $teacher,
             $command->getDays()
         );
