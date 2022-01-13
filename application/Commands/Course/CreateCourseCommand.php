@@ -10,11 +10,16 @@ class CreateCourseCommand implements CommandInterface
 {
     private string $title;
     private string $description;
+    private array $days;
 
-    public function __construct(string $title, string $description)
-    {
+    public function __construct(
+        string $title,
+        string $description,
+        array $days = null
+    ) {
         $this->title = $title;
         $this->description = $description;
+        $this->days = $days;
     }
 
     public function getTitle(): string
@@ -25,5 +30,10 @@ class CreateCourseCommand implements CommandInterface
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getDays(): ?array
+    {
+        return $this->days;
     }
 }
