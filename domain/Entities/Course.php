@@ -21,6 +21,8 @@ class Course
     private string $title;
     private string $description;
     private array $days;
+    private DateTime $fromDate;
+    private DateTime $toDate;
     private Teacher $teacher;
     private Collection $students;
     private Collection $tasks;
@@ -28,6 +30,8 @@ class Course
     public function __construct(
         string $title,
         string $description,
+        DateTime $fromDate,
+        DateTime $toDate,
         Teacher $teacher,
         ?array $days = null
     ) {
@@ -35,6 +39,8 @@ class Course
         $this->description = $description;
         $this->teacher = $teacher;
         $this->days = $days ?: DaysOfTheWeek::ALL_DAYS;
+        $this->fromDate = $fromDate;
+        $this->toDate = $toDate;
         $this->students = new ArrayCollection();
         $this->tasks = new ArrayCollection();
         $timestamp = new DateTime();
@@ -70,6 +76,26 @@ class Course
     public function setDays(array $days): void
     {
         $this->days = $days;
+    }
+
+    public function getFromDate(): DateTime
+    {
+        return $this->fromDate;
+    }
+
+    public function setFromDate(DateTime $fromDate): void
+    {
+        $this->fromDate = $fromDate;
+    }
+
+    public function getToDate(): DateTime
+    {
+        return $this->toDate;
+    }
+
+    public function setToDate(DateTime $toDate): void
+    {
+        $this->toDate = $toDate;
     }
 
     public function getTeacher(): Teacher

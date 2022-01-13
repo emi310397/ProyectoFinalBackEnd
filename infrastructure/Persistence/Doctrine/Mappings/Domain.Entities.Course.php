@@ -23,6 +23,12 @@ $builder->createField('description', Types::TEXT)
 $builder->createField('days', Types::ARRAY)
     ->build();
 
+$builder->createField('fromDate', Types::DATE_MUTABLE)
+    ->build();
+
+$builder->createField('toDate', Types::DATE_MUTABLE)
+    ->build();
+
 $builder->createManyToOne('teacher', Teacher::class)
     ->inversedBy('courses')
     ->build();
