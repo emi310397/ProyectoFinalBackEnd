@@ -55,9 +55,12 @@ class EditTaskAdapter extends CommandAdapter
 
     public function adapt(Request $request): EditTaskCommand
     {
-        $this->assertRulesAreValid($request->all());
+        $rules = $request->all();
+        $taskId = (int)$request->route()->parameter(self::TASK_ID_PARAM);
+        $rules[self::TASK_ID_PARAM] = $taskId;
+        $this->assertRulesAreValid($rules);
 
-        $task = $this->taskRepository->getByIdOrFail($request->get(self::TASK_ID_PARAM));
+        $task = $this->taskRepository->getByIdOrFail($taskId);
 
         return new EditTaskCommand(
             $task,
