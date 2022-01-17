@@ -45,6 +45,6 @@ class GetCoursesHandler
             }
         }
 
-        return new CoursesResult(array_unique($courses));
+        return new CoursesResult(array_unique($courses, SORT_REGULAR));
     }
 }
