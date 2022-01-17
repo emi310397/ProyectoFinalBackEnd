@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Presentation\Http\Presenters\Task;
 
-use Application\Results\Task\TaskResult;
 use Application\Results\Task\TasksResult;
+use Domain\Entities\Task;
 use Infrastructure\Presenter\Contracts\PresenterInterface;
 
 class TasksPresenter implements PresenterInterface
@@ -25,18 +25,22 @@ class TasksPresenter implements PresenterInterface
 
     public function getData(): array
     {
-        $data = [];
-        $tasksResults = $this->result->getTasksResults();
+        $tasks = $this->result->getTasksResults();
 
-        $taskPresenter = new TaskPresenter();
+        return [
+            'tasks' => $this->getTasksIds($tasks)
+        ];
+    }
 
-        /* @var TaskResult $taskResult */
-        foreach ($tasksResults as $taskResult) {
-            $taskPresenter->fromResult($taskResult);
+    private function getTasksIds(array $tasks): array
+    {
+        $tasksIds = [];
 
-            $data[] = $taskPresenter->getData();
+        /* @var Task $task */
+        foreach ($tasks as $task) {
+            $tasksIds[] = $task->getId();
         }
 
-        return $data;
+        return $tasksIds;
     }
 }

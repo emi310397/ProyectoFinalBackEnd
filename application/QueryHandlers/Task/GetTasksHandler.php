@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Application\QueryHandlers\Task;
 
 use Application\Queries\Task\GetTasksQuery;
-use Application\Results\Task\TaskResult;
 use Application\Results\Task\TasksResult;
 use Application\Validators\Course\UserToCourseMembershipValidator;
 use Domain\Interfaces\Repositories\TaskRepositoryInterface;
@@ -29,14 +28,8 @@ class GetTasksHandler
 
         $this->validator->validateCurrentUser($course);
 
-        $tasksResults = [];
-
         $tasks = $this->taskRepository->getAllByCourse($course);
 
-        foreach ($tasks as $task) {
-            $tasksResults[] = new TaskResult($task);
-        }
-
-        return new TasksResult($tasksResults);
+        return new TasksResult($tasks);
     }
 }

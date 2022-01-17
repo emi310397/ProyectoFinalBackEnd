@@ -28,10 +28,10 @@ class TaskPresenter implements PresenterInterface
 
         return [
             'id' => $task->getId(),
-            'subject' => $task->getTitle(),
+            'title' => $task->getTitle(),
             'description' => $task->getDescription(),
-            'fromDate' => $task->getFromDate(),
-            'toDate' => $task->getToDate()
+            'fromDate' => $task->getFromDate()->format('Y-m-d'),
+            'toDate' => $task->getToDate()->format('Y-m-d')
         ];
     }
 }
