@@ -6,33 +6,33 @@ namespace Application\Commands\Task;
 
 use DateTime;
 use Domain\CommandBus\CommandInterface;
-use Domain\Entities\PClass;
+use Domain\Entities\Course;
 
 class CreateTaskCommand implements CommandInterface
 {
-    private PClass $PClass;
+    private Course $course;
     private string $title;
     private string $description;
     private DateTime $fromDate;
     private DateTime $toDate;
 
     public function __construct(
-        PClass $PClass,
+        Course $course,
         string $title,
         string $description,
-        DateTime $fromDate,
-        DateTime $toDate
+        string $fromDate,
+        string $toDate
     ) {
-        $this->PClass = $PClass;
+        $this->course = $course;
         $this->title = $title;
         $this->description = $description;
-        $this->fromDate = $fromDate;
-        $this->toDate = $toDate;
+        $this->fromDate = new DateTime($fromDate);
+        $this->toDate = new DateTime($toDate);
     }
 
-    public function getPClass(): PClass
+    public function getCourse(): Course
     {
-        return $this->PClass;
+        return $this->course;
     }
 
     public function getTitle(): string

@@ -26,9 +26,9 @@ class FixturesProvider
             new UserFixture(),
             new TokenFixture(),
             new SessionFixture(),
-            new CoursesFixture(),
-            new PClassesFixture(),
+            new CourseFixture(),
             new TasksFixture(),
+            new StudentGroupFixture(),
         ];
     }
 }

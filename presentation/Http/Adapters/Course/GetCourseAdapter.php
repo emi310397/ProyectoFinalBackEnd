@@ -6,22 +6,22 @@ namespace Presentation\Http\Adapters\Course;
 
 use Application\Queries\Course\GetCourseQuery;
 use Domain\Adapters\CommandAdapter;
-use Domain\Interfaces\Repositories\PClassRepositoryInterface;
+use Domain\Interfaces\Repositories\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
 class GetCourseAdapter extends CommandAdapter
 {
-    private PClassRepositoryInterface $PClassRepository;
+    private CourseRepositoryInterface $courseRepository;
 
     private const ID_PARAM = 'id';
 
     public function __construct(
         ValidatorServiceInterface $validator,
-        PClassRepositoryInterface $PClassRepository
+        CourseRepositoryInterface $courseRepository
     ) {
         parent::__construct($validator);
-        $this->PClassRepository = $PClassRepository;
+        $this->courseRepository = $courseRepository;
     }
 
     public function getRules(): array
@@ -34,9 +34,9 @@ class GetCourseAdapter extends CommandAdapter
     public function getMessages(): array
     {
         return [
-            self::ID_PARAM . '.required' => __('The id of the class is required'),
-            self::ID_PARAM . '.integer' => __('The id of the class must be a number'),
-            self::ID_PARAM . '.gt' => __('The id of the class must be a greater than 0')
+            self::ID_PARAM . '.required' => __('The id of the course is required'),
+            self::ID_PARAM . '.integer' => __('The id of the course must be a number'),
+            self::ID_PARAM . '.gt' => __('The id of the course must be a greater than 0')
         ];
     }
 
@@ -47,8 +47,8 @@ class GetCourseAdapter extends CommandAdapter
         $rules[self::ID_PARAM] = $id;
         $this->assertRulesAreValid($rules);
 
-        $PClass = $this->PClassRepository->getByIdOrFail($id);
+        $course = $this->courseRepository->getByIdOrFail($id);
 
-        return new GetCourseQuery($PClass);
+        return new GetCourseQuery($course);
     }
 }

@@ -29,7 +29,10 @@ class CoursePresenter implements PresenterInterface
         return [
             'id' => $course->getId(),
             'title' => $course->getTitle(),
-            'description' => $course->getDescription()
+            'description' => $course->getDescription(),
+            'fromDate' => $course->getFromDate()->format('Y-m-d'),
+            'toDate' => $course->getToDate()->format('Y-m-d'),
+            'days' => $course->getDays()
         ];
     }
 }

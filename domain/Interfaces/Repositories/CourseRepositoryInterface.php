@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Interfaces\Repositories;
 
 use Domain\Entities\Course;
+use Domain\Entities\Teacher;
 
 /**
  * Interface CourseRepositoryInterface
@@ -22,4 +23,6 @@ use Domain\Entities\Course;
 interface CourseRepositoryInterface extends BaseRepositoryInterface
 {
     public function getByIdOrFail(int $id): Course;
+
+    public function getAllByTeacher(Teacher $teacher): ?array;
 }

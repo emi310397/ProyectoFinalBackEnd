@@ -7,49 +7,50 @@ namespace Presentation\Http\Adapters\Task;
 use Application\Queries\PClass\GetPClassesQuery;
 use Application\Queries\Task\GetTasksQuery;
 use Domain\Adapters\CommandAdapter;
+use Domain\Interfaces\Repositories\CourseRepositoryInterface;
 use Domain\Interfaces\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
 class GetTasksAdapter extends CommandAdapter
 {
-    private UserRepositoryInterface $userRepository;
+    private CourseRepositoryInterface $courseRepository;
 
-    private const USER_ID_PARAM = 'userId';
+    private const COURSE_ID_PARAM = 'id';
 
     public function __construct(
         ValidatorServiceInterface $validator,
-        UserRepositoryInterface $userRepository
+        CourseRepositoryInterface $courseRepository
     ) {
         parent::__construct($validator);
-        $this->userRepository = $userRepository;
+        $this->courseRepository = $courseRepository;
     }
 
     public function getRules(): array
     {
         return [
-            self::USER_ID_PARAM => 'required|integer|gt:0'
+            self::COURSE_ID_PARAM => 'required|integer|gt:0'
         ];
     }
 
     public function getMessages(): array
     {
         return [
-            self::USER_ID_PARAM . '.required' => __('The id of the user is required'),
-            self::USER_ID_PARAM . '.integer' => __('The id of the user must be a number'),
-            self::USER_ID_PARAM . '.gt' => __('The id of the user must be a greater than 0')
+            self::COURSE_ID_PARAM . '.required' => __('The id of the user is required'),
+            self::COURSE_ID_PARAM . '.integer' => __('The id of the user must be a number'),
+            self::COURSE_ID_PARAM . '.gt' => __('The id of the user must be a greater than 0')
         ];
     }
 
     public function adapt(Request $request): GetTasksQuery
     {
         $rules = $request->all();
-        $id = (int)$request->route()->parameter(self::USER_ID_PARAM);
-        $rules[self::USER_ID_PARAM] = $id;
+        $id = (int)$request->route()->parameter(self::COURSE_ID_PARAM);
+        $rules[self::COURSE_ID_PARAM] = $id;
         $this->assertRulesAreValid($rules);
 
-        $user = $this->userRepository->getByIdOrFail($id);
+        $course = $this->courseRepository->getByIdOrFail($id);
 
-        return new GetTasksQuery($user);
+        return new GetTasksQuery($course);
     }
 }

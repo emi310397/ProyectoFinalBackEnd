@@ -7,6 +7,7 @@ namespace Domain\Entities;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Domain\Enums\DaysOfTheWeek;
 use Domain\Traits\IdentityTrait;
 use Domain\Traits\SoftDeleteTrait;
 use Domain\Traits\TimestampsTrait;
@@ -19,17 +20,29 @@ class Course
 
     private string $title;
     private string $description;
-    private User $teacher;
+    private array $days;
+    private DateTime $fromDate;
+    private DateTime $toDate;
+    private Teacher $teacher;
     private Collection $students;
-    private Collection $classes;
+    private Collection $tasks;
 
-    public function __construct(string $title, string $description, User $teacher)
-    {
+    public function __construct(
+        string $title,
+        string $description,
+        DateTime $fromDate,
+        DateTime $toDate,
+        Teacher $teacher,
+        ?array $days = null
+    ) {
         $this->title = $title;
         $this->description = $description;
         $this->teacher = $teacher;
+        $this->days = $days ?: DaysOfTheWeek::ALL_DAYS;
+        $this->fromDate = $fromDate;
+        $this->toDate = $toDate;
         $this->students = new ArrayCollection();
-        $this->classes = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
         $timestamp = new DateTime();
         $this->setCreatedAt($timestamp);
         $this->setUpdatedAt($timestamp);
@@ -55,7 +68,37 @@ class Course
         $this->description = $description;
     }
 
-    public function getTeacher(): User
+    public function getDays(): array
+    {
+        return $this->days;
+    }
+
+    public function setDays(array $days): void
+    {
+        $this->days = $days;
+    }
+
+    public function getFromDate(): DateTime
+    {
+        return $this->fromDate;
+    }
+
+    public function setFromDate(DateTime $fromDate): void
+    {
+        $this->fromDate = $fromDate;
+    }
+
+    public function getToDate(): DateTime
+    {
+        return $this->toDate;
+    }
+
+    public function setToDate(DateTime $toDate): void
+    {
+        $this->toDate = $toDate;
+    }
+
+    public function getTeacher(): Teacher
     {
         return $this->teacher;
     }
@@ -70,13 +113,13 @@ class Course
         $this->students->add($students);
     }
 
-    public function getClasses(): Collection
+    public function getTasks(): Collection
     {
-        return $this->classes;
+        return $this->tasks;
     }
 
-    public function addClass(PClass $class): void
+    public function addTask(Task $task): void
     {
-        $this->classes->add($class);
+        $this->tasks->add($task);
     }
 }

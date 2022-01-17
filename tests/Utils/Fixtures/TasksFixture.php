@@ -25,29 +25,29 @@ class TasksFixture extends Fixture
     public function getInstances(): array
     {
         $task1 = new Task(
+            $this->getReference(CourseFixture::COURSE_1),
             'task 1',
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-50 hours'))),
-            new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_1_PCLASS_1)]
+            new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours')))
         );
         $this->addReference(self::TASK_1, $task1);
 
         $task2 = new Task(
+            $this->getReference(CourseFixture::COURSE_1),
             'task 2',
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-10 hours'))),
-            new DateTime(date('Y-m-d H:i:s', strtotime('+10 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_1_PCLASS_2)]
+            new DateTime(date('Y-m-d H:i:s', strtotime('+10 hours')))
         );
         $this->addReference(self::TASK_2, $task2);
 
         $task3 = new Task(
+            $this->getReference(CourseFixture::COURSE_2),
             'task 3',
             'task description',
             new DateTime(date('Y-m-d H:i:s', strtotime('-50 hours'))),
-            new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours'))),
-            [$this->getReference(PClassesFixture::COURSE_2_PCLASS_1)]
+            new DateTime(date('Y-m-d H:i:s', strtotime('-30 hours')))
         );
         $this->addReference(self::TASK_3, $task3);
 

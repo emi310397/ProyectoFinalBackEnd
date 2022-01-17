@@ -6,15 +6,15 @@ namespace Presentation\Http\Adapters\Task;
 
 use Application\Commands\Task\CreateTaskCommand;
 use Domain\Adapters\CommandAdapter;
-use Domain\Interfaces\Repositories\PClassRepositoryInterface;
+use Domain\Interfaces\Repositories\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 use Presentation\Interfaces\ValidatorServiceInterface;
 
 class CreateTaskAdapter extends CommandAdapter
 {
-    private PClassRepositoryInterface $PClassRepository;
+    private CourseRepositoryInterface $courseRepository;
 
-    private const PCLASS_ID_PARAM = 'id';
+    private const COURSE_ID_PARAM = 'id';
     private const TITLE_PARAM = 'title';
     private const DESCRIPTION_PARAM = 'description';
     private const FROM_DATE_PARAM = 'fromDate';
@@ -22,16 +22,16 @@ class CreateTaskAdapter extends CommandAdapter
 
     public function __construct(
         ValidatorServiceInterface $validator,
-        PClassRepositoryInterface $PClassRepository
+        CourseRepositoryInterface $courseRepository
     ) {
         parent::__construct($validator);
-        $this->PClassRepository = $PClassRepository;
+        $this->courseRepository = $courseRepository;
     }
 
     public function getRules(): array
     {
         return [
-            self::PCLASS_ID_PARAM => 'bail|required|integer|gt:0',
+            self::COURSE_ID_PARAM => 'bail|required|integer|gt:0',
             self::TITLE_PARAM => 'bail|required|string',
             self::DESCRIPTION_PARAM => 'bail|required|string',
             self::FROM_DATE_PARAM => 'bail|required|date',
@@ -42,9 +42,9 @@ class CreateTaskAdapter extends CommandAdapter
     public function getMessages(): array
     {
         return [
-            self::PCLASS_ID_PARAM . 'required' => __('The id of the class is required'),
-            self::PCLASS_ID_PARAM . 'integer' => __('The id of the class must be a number'),
-            self::PCLASS_ID_PARAM . 'gt' => __('The id of the class must be a greater than 0'),
+            self::COURSE_ID_PARAM . 'required' => __('The id of the course is required'),
+            self::COURSE_ID_PARAM . 'integer' => __('The id of the course must be a number'),
+            self::COURSE_ID_PARAM . 'gt' => __('The id of the course must be a greater than 0'),
             self::TITLE_PARAM . 'required' => __('The title of the task is required'),
             self::TITLE_PARAM . 'string' => __('The title of the task must be a string'),
             self::DESCRIPTION_PARAM . 'required' => __('The description of the task is required'),
@@ -59,12 +59,15 @@ class CreateTaskAdapter extends CommandAdapter
 
     public function adapt(Request $request): CreateTaskCommand
     {
-        $this->assertRulesAreValid($request->all());
+        $rules = $request->all();
+        $courseId = (int)$request->route()->parameter(self::COURSE_ID_PARAM);
+        $rules[self::COURSE_ID_PARAM] = $courseId;
+        $this->assertRulesAreValid($rules);
 
-        $PClass = $this->PClassRepository->getByIdOrFail($request->get(self::PCLASS_ID_PARAM));
+        $course = $this->courseRepository->getByIdOrFail($courseId);
 
         return new CreateTaskCommand(
-            $PClass,
+            $course,
             $request->get(self::TITLE_PARAM),
             $request->get(self::DESCRIPTION_PARAM),
             $request->get(self::FROM_DATE_PARAM),

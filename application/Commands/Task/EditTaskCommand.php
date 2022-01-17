@@ -20,14 +20,14 @@ class EditTaskCommand implements CommandInterface
         Task $task,
         ?string $title,
         ?string $description,
-        ?DateTime $fromDate,
-        ?DateTime $toDate
+        ?string $fromDate,
+        ?string $toDate
     ) {
         $this->task = $task;
         $this->title = $title;
         $this->description = $description;
-        $this->fromDate = $fromDate;
-        $this->toDate = $toDate;
+        $this->fromDate = new DateTime($fromDate);
+        $this->toDate = new DateTime($toDate);
     }
 
     public function getTask(): Task

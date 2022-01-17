@@ -13,7 +13,7 @@ use Presentation\Http\Presenters\Assignment\AssignmentsPresenter;
 
 class GetAssignmentsAction extends BaseAction
 {
-    public const ROUTE_NAME = 'Assignments.get';
+    public const ROUTE_NAME = 'Assignment.getMany';
 
     private GetPClassesAdapter $adapter;
     private QueryBusInterface $queryBus;

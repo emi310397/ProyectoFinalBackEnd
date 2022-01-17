@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Interfaces\Repositories;
 
+use Domain\Entities\Course;
+use Domain\Entities\Student;
 use Domain\Entities\StudentGroup;
 
 /**
@@ -22,4 +24,8 @@ use Domain\Entities\StudentGroup;
 interface StudentGroupRepositoryInterface extends BaseRepositoryInterface
 {
     public function getByIdOrFail(int $id): StudentGroup;
+
+    public function getAllByCourse(Course $course): ?array;
+
+    public function getAllByStudent(Student $student): ?array;
 }
